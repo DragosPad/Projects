@@ -1,0 +1,6 @@
+D:\DRAGOS\exemple c#\hour\hour\bin\Debug\hour.exe.config
+D:\DRAGOS\exemple c#\hour\hour\bin\Debug\hour.exe
+D:\DRAGOS\exemple c#\hour\hour\bin\Debug\hour.pdb
+D:\DRAGOS\exemple c#\hour\hour\obj\Debug\hour.exe
+D:\DRAGOS\exemple c#\hour\hour\obj\Debug\hour.pdb
+D:\DRAGOS\exemple c#\hour\hour\obj\Debug\hour.csprojResolveAssemblyReference.cache
