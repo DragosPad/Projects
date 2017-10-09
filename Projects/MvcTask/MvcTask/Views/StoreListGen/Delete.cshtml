@@ -1,0 +1,20 @@
+﻿@model MvcTask.Models.ListGen
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+<p>Are you sure you want to delete the ListGen 
+   <strong>@Model.Name</strong>?
+</p>
+
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" />
+    </p>
+    <p>
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+}

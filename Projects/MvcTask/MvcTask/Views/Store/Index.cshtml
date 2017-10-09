@@ -1,0 +1,32 @@
+﻿@model IEnumerable<MvcTask.Models.ListGen>
+>
+
+@{
+ViewBag.Title = "Store";
+ }
+<h2>ListGen</h2>
+  <table>
+  <tr>
+     <th>
+        Name
+     </th>
+    <th>
+       Description
+    </th>
+
+   <th></th>
+ </tr>
+@foreach (var item in Model) {
+   <tr>
+        
+    <td>
+         @Html.DisplayFor(modelItem => item.ListGenId)
+    </td>
+     <td>
+         @Html.DisplayFor(modelItem => item.Name)
+    </td>
+     
+</tr>
+}
+
+</table>
