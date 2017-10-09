@@ -1,0 +1,135 @@
+﻿@using MvcRestaurant.ViewModel
+@using MvcRestaurant.Models
+
+@model MvcRestaurant.ViewModel.BookingTable
+
+
+@*@using MvcRestaurant.Models
+
+@model IEnumerable<MvcRestaurant.Models.Table>
+*@
+@{
+    ViewBag.Title = "ViewDiagram";
+}
+
+<h2>ViewDiagram</h2>
+
+
+<div>
+    <table border="1">
+        @for (int i = 0; i < 3; i++)
+        {
+          <tr>
+              @for (int j = 0; j < 3; j++)
+              {
+                <td class="myCell">
+                     @foreach (var item in Model.TablesView)
+                     {
+                         if (item.CoordinatesTable.CoordinateX == i && item.CoordinatesTable.CoordinateY == j)
+                         {
+                            <div class ="Img">                                
+                                @item.DimensionTable
+                                  </div>
+                             if (item.Status == Status.Free)
+                             {
+                                
+                                @Html.Image("/Content/images/imagine1.png", "alt", "100", new { idCoord = item.TableId, border = "0", @class = "table" })
+                             }
+                             else if (item.Status == Status.Reserved)
+                             {
+                                  @Html.Image("/Content/images/imagine2.png", "alt", "100", new { idCoord = item.TableId, border = "0", @class = "table1" })
+                             }
+
+                         }
+                     }
+                </td>
+              }
+          </tr>
+        }
+
+    </table>
+
+
+</div>
+
+    <div style="float:left;"> 
+    <ul id="seatDescription">
+        <li style="background:url('/Content/images/imagine1.png') no-repeat scroll 0 0 transparent;" id="Imag">Available Table</li>
+        <li style="background:url('/Content/images/imagine2.png') no-repeat scroll 0 0 transparent;">Reserved Table</li>
+        <li style="background:url('/Content/images/imagine3.png') no-repeat scroll 0 0 transparent;">Occupied Table</li>
+    </ul>
+    </div>
+ 
+  @using (Html.BeginForm("ConfirmReservation", "Reservation"))
+  {
+    @Html.ValidationSummary(true)
+  
+
+    
+         @Html.HiddenFor(m => m.Reservation.NumberOfPeople) 
+         @Html.HiddenFor(m => m.Reservation.ReservationDate) 
+         @Html.HiddenFor(m => m.Reservation.ReservationTime) 
+      
+      @Html.TextBox("hiddenIdTable","", new {@class = "coord" })
+      
+         
+      
+       <p>
+            <input type="submit" value="Confirm Reservation" />
+       </p>
+      <div class="coord">
+</div>  
+     
+  }
+
+<script>
+   
+    var coord2 = $('.coord');
+    var lastTable;
+    $(".table").on('click', function () {
+
+        //var cor = coord2.val($(this).attr("idCoord"));
+        //lastTable = $(this);
+        if (lastTable != null) {
+
+            if (lastTable.attr("src") == "/Content/images/imagine1.png") {
+                lastTable.attr("src", "/Content/images/imagine2.png")
+            }
+            else {
+                lastTable.attr("src", "/Content/images/imagine1.png")
+            }
+
+        }
+        
+
+    });
+
+    $(".table").on('click', function () {
+
+        var cor = coord2.val($(this).attr("idCoord"));
+        lastTable = $(this);
+        if ($(this).attr("src").toString().indexOf('imagine1.png') != -1) {
+
+
+            this.src = this.src.replace("imagine1.png", "imagine2.png");
+            
+        }
+
+        else {
+
+            this.src = this.src.replace("imagine2.png", "imagine1.png");
+            coord2.val("");
+           
+
+        }
+
+    });
+</script>
+<script>
+    $(function () {
+        $("#result").selectable();
+    });
+  </script>
+
+
+

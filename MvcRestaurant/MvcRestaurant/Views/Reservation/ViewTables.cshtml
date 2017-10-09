@@ -1,0 +1,47 @@
+﻿@using MvcRestaurant.Models
+
+@model IEnumerable<MvcRestaurant.Models.Table>
+
+@{
+    ViewBag.Title = "ViewTables";
+}
+
+<h2>ViewTables</h2>
+<table>
+    <tr>
+    <th>
+       Dimension Table
+     </th>
+    <th>
+     Status
+    </th>
+         <th>
+    Imagine
+    </th>
+        
+    
+  </tr>
+@foreach (var item in Model)
+{
+   <tr>
+       <td>
+           @item.DimensionTable
+       </td>
+       <td>
+           @Html.DisplayFor(modelItem => item.Status)
+       </td>
+       <td>
+           @*@Html.DisplayFor(modelItem => item.ImageUrl)*@
+           <img src="@item.ImageUrl" alt="@item.DimensionTable" height="100" />
+       </td>
+   </tr>
+}
+</table>
+
+@foreach (var item2 in Model)
+{
+   @item2.DimensionTable
+    <img src="@item2.ImageUrl" alt="@item2.DimensionTable" height="100" />
+  
+}
+

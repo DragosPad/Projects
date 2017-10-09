@@ -1,0 +1,114 @@
+﻿body
+{
+    font-size: .85em;
+    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+}
+
+header,
+footer,
+nav,
+section {
+    display: block;
+}
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+
+fieldset 
+{
+    border:1px solid #ddd;
+    padding:0 1.4em 1.4em 1.4em;
+    margin:0 0 1.5em 0;
+}
+
+legend 
+{
+    font-size:1.2em;
+    font-weight: bold;
+}
+
+textarea 
+{
+    min-height: 75px;
+}
+
+.editor-label 
+{
+    margin: 1em 0 0 0;
+}
+
+.editor-field 
+{
+    margin:0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+
+
+.history {
+    width: 208px;
+    font-weight: lighter;
+    color: #708090;
+    text-align: right;
+}
+.result {
+    width: 208px;
+    font-weight: bold;
+    text-align: right;
+}
+p {
+    color: black;
+}
+div {
+    width: 220px;
+    text-align: center;
+}
+input[type=button] {
+    width: 50px;
+}
+
+.results input{
+    margin: 1px;
+}
+
+.calculator {
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    padding-bottom: 3px;
+}
+
+
+
+

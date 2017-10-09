@@ -1,0 +1,73 @@
+﻿@model MvcTask.Models.Task
+
+@using MvcTask.Models;
+
+@{
+    ViewBag.Title = "Create";
+   
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Task</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name )
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+ 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Deadline)
+        </div>
+        <div class="editor-field">           
+        
+          @*  @Html.EditorFor(model => model.Deadline, templateName: "TemplateDateTime") *@
+            @Html.TextBoxFor(m => m.Deadline, new {id = "Deadline", @class="datetime", type = "datetime"})
+            
+            @Html.ValidationMessageFor(model => model.Deadline)
+        </div>
+   <div class="editor-label">
+            @Html.LabelFor(model => model.Priority)
+        </div>
+        <div class="editor-field">
+           
+         @Html.DropDownListFor(model => model.Priority, new SelectList(Enum.GetValues(typeof(Priority))), "Select Priority")
+         
+            @Html.ValidationMessageFor(model => model.Priority)
+        </div>
+     
+      
+       @* <input type="hidden" id="parentListId" value="@Model.ListGenId"> *@
+       
+
+        <p>
+            <input  id="new" type="submit" value="Create" />
+        </p>
+       
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        console.log("The id is :" + $('.datetime').attr("id"));
+        $('.datetime').datepicker({
+            dateFormat: "dd/M/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0"
+        });
+
+    });
+</script>  
+  
