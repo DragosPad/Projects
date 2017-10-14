@@ -1,0 +1,35 @@
+﻿@model MvcRestaurant.Models.User
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Login Form</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+
+         <div class="editor-label">
+            @Html.LabelFor(model => model.passWord)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.passWord)
+            @Html.ValidationMessageFor(model => model.passWord)
+        </div>
+   
+           <p>
+            <input type="submit" value="Login" />
+        </p>
+       
+    </fieldset>
+}
