@@ -103,6 +103,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\WaitersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -226,6 +227,7 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Test\details.cshtml" />
+    <Content Include="Views\Waiters\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

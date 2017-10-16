@@ -36,10 +36,20 @@ namespace MvcRestaurant.Models
             new List<Waiter> 
             
             {
-                new Waiter { Name = "Jack", NumberEmployee = 5, Coordinator = coordinator },
-                new Waiter { Name = "Jerry", NumberEmployee = 1, Coordinator = coordinator },
-                new Waiter { Name = "Andre", NumberEmployee = 3, Coordinator = coordinator },
-                new Waiter { Name = "Anton", NumberEmployee = 8, Coordinator = coordinator }
+                new Waiter { Name = "Jack", NumberEmployee = 5, Coordinator = coordinator,
+                
+                Tables = new List<Table>() {
+                    new Table {DimensionTable = 4, Status=Status.Free, CoordinatesTable = new Coords(0, 0), ImageUrl="/Content/images/imagine1.png" }}},
+                new Waiter { Name = "Jerry", NumberEmployee = 1, Coordinator = coordinator,
+                 Tables = new List<Table>() {
+                     new Table {DimensionTable = 2, Status=Status.Occupied, CoordinatesTable = new Coords(0, 1), ImageUrl="/Content/images/imagine1.png"  }}},
+                new Waiter { Name = "Andre", NumberEmployee = 3, Coordinator = coordinator,
+                 Tables = new List<Table>() {
+                 new Table {DimensionTable = 2, Status=Status.Free, CoordinatesTable = new Coords(1, 1), ImageUrl="/Content/images/imagine1.png" },
+                 new Table {DimensionTable = 6, Status=Status.Free, CoordinatesTable = new Coords(2, 2), ImageUrl="/Content/images/imagine1.png"  }}},
+                new Waiter { Name = "Anton", NumberEmployee = 8, Coordinator = coordinator,
+                Tables = new List<Table>() {
+                     new Table {DimensionTable = 6, Status=Status.Reserved, CoordinatesTable = new Coords(0, 2), ImageUrl="/Content/images/imagine1.png" }}}
             
             }.ForEach(b => context.Waiters.Add(b));
             

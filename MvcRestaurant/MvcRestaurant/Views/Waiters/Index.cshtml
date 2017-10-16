@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MvcRestaurant.Models.Waiter>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Number table
+        </th>
+        <th>
+            Note
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    { 
+      <tr>
+          <td>
+              @Html.DisplayFor(modelItem => item.Name)
+          </td>
+          <td>
+              @Html.DisplayFor(model => item.Tables.Count)
+          </td>
+          <td>
+              @Html.EditorFor(model => item.Note)
+          </td>
+           <td>
+            @Html.ActionLink("ViewDiagram", "ViewDiagram", "Reservation", new { id = item.TableId }, null)
+       </td>
+      </tr>
+      
+    }
+</table>

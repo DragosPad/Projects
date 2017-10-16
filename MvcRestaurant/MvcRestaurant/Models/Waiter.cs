@@ -12,6 +12,8 @@ namespace MvcRestaurant.Models
         public int NumberEmployee { get; set; }
         public int CoordinatorId { get; set; }
         public Waiter Coordinator { get; set; }
-        public List<Table> Tables { get; set; }
+        public string Note { get; set; }
+        public virtual List<Table> Tables { get; set; }
+        public int? TableId { get; set; }
     }
 }
