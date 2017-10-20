@@ -228,6 +228,7 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Test\details.cshtml" />
     <Content Include="Views\Waiters\Index.cshtml" />
+    <Content Include="Views\Waiters\WriteNote.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

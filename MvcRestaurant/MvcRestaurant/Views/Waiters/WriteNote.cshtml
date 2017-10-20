@@ -1,0 +1,28 @@
+﻿@model MvcRestaurant.Models.Waiter
+
+
+@{
+    ViewBag.Title = "WriteNote";
+}
+
+<h2>WriteNote</h2>
+
+@using (Html.BeginForm("Index", "Waiters")) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>WriteNote</legend>
+
+       
+        <div>
+            @Html.TextAreaFor(model => model.Note, new {id = "note1", @class="notes"})
+            
+        </div>
+        
+
+           <p>
+            <input type="submit" value="Save" />
+        </p>
+       
+    </fieldset>
+}
+

@@ -419,3 +419,13 @@ top: -44px;
   margin-left: 0px;
   text-align: center;
 }
+
+.notes {
+    width: 400px;
+    height: 300px;
+    border: 2px solid #ccc;
+       background-color: #f8f8f8;
+       color: red;
+}
+
+   

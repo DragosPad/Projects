@@ -20,5 +20,12 @@ namespace MvcRestaurant.Controllers
             return View(wait);
         }
 
+        public ActionResult WriteNote()
+        {
+
+            ViewBag.BookingFormId = new SelectList(db.Waiters, "WaiterId");
+            return View();
+        }
+
     }
 }

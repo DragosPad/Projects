@@ -19,7 +19,7 @@ namespace MvcRestaurant.Controllers
 
         public ActionResult Index()
         {
-
+           
             ViewBag.BookingFormId = new SelectList(db.BookingForms, "BookingFormId");
             return View();
 
