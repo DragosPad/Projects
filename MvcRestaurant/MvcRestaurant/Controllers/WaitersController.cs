@@ -27,5 +27,12 @@ namespace MvcRestaurant.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult WriteNote(Waiter wait)
+        {
+            db.Waiters.Add(wait);
+            db.SaveChanges();
+            return View();
+        }
     }
 }
