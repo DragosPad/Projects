@@ -10,19 +10,44 @@ namespace Fibonnaci
     {
         static void Main(string[] args)
         {
-            int i, count, f1 = 0, f2 = 1, f3 = 0;
-            Console.Write("Enter the Limit : ");
-            count = int.Parse(Console.ReadLine());
-            Console.WriteLine(f1);
-            Console.WriteLine(f2);
-            for (i = 0; i <= count; i++)
+            Fibo fib = new Fibo();
+            bool printNumber = true;
+            Console.Write("Enter the limit:");
+            int count = int.Parse(Console.ReadLine());
+            while (printNumber)
+            {
+                IEnumerator<int> enumer = Fibonnaci().GetEnumerator();
+                //var enumer = Fibonnaci().GetEnumerator();
+                Console.Write("Print more numbers Y/N : ");
+                string answer = Console.ReadLine();
+                if (answer == "N")
+                {
+                    printNumber = false;
+                }
+                else
+                {
+                    Console.WriteLine(enumer.Current);
+                }
+                enumer.MoveNext();
+            }
+
+            Console.WriteLine("Finish");
+            Console.ReadLine();
+        }
+        private static IEnumerable<int> Fibonnaci()
+        {
+            int i, f1 = 0, f2 = 1, f3 = 0;
+
+            yield return f1;
+            yield return f2;
+
+            while (true)
             {
                 f3 = f1 + f2;
-                Console.WriteLine(f3);
+                yield return f3;
                 f1 = f2;
                 f2 = f3;
             }
-            Console.ReadLine();
         }
     }
 }

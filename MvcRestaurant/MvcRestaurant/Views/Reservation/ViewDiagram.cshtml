@@ -53,11 +53,22 @@
 </div>
 
     <div style="float:left;"> 
-    <ul id="seatDescription">
-        <li style="background:url('/Content/images/imagine1.png') no-repeat scroll 0 0 transparent;" id="Imag">Available Table</li>
-        <li style="background:url('/Content/images/imagine2.png') no-repeat scroll 0 0 transparent;">Reserved Table</li>
-        <li style="background:url('/Content/images/imagine3.png') no-repeat scroll 0 0 transparent;">Occupied Table</li>
-    </ul>
+    <div id="seatDescription">
+         <div>
+        <img src= "@Url.Content("~/Content/images/imagine1.png")" />
+            <span>Available Table</span>
+            </div>
+
+          <div>
+        <img src= "@Url.Content("~/Content/images/imagine2.png")" />
+              <span>Reserved Table</span>
+              </div>
+
+                <div>
+                 <img src="@Url.Content("~/Content/images/imagine3.png")" /> 
+                    <span>Occupied Table</span>
+                    </div>
+    </div>
     </div>
  
   @using (Html.BeginForm("ConfirmReservation", "Reservation"))

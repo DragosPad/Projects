@@ -17,6 +17,9 @@
         <th>
            Write Note
         </th>
+         <th>
+           Tables View
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -29,10 +32,10 @@
               @Html.DisplayFor(model => item.Tables.Count)
           </td>
           <td>
-               @Html.ActionLink("WriteNote", "WriteNote", "Waiters", new { id = item.WaiterId }, null)
+               @Html.ActionLink("Write Note", "WriteNote", "Waiters", new { id = item.WaiterId }, null)
           </td>
            <td>
-            @Html.ActionLink("ViewDiagram", "ViewDiagram", "Reservation", new { id = item.TableId }, null)
+            @Html.ActionLink("Tables View", "TablesView", "Waiters", new { id = item.TableId }, null)
        </td>
       </tr>
       

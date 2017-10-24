@@ -4,6 +4,10 @@
 	padding: 0px;
 	border: none;
 }
+div {
+
+display: block;
+}
 
 body
 {
@@ -375,14 +379,25 @@ background-image:url("/Content/images/imagine3.png");
 #place .row-3, #place .row-4{
 margin-top:10px;
 }
-#seatDescription li{
-verticle-align:middle;    
+#seatDescription img{
+vertical-align:middle;    
 list-style: none outside none;
-padding-left:35px;
-height:35px;
-float:left;
+/*padding-left:35px;*/
+height:70px;
+/*width: 150px;*/
+/*float:left;*/
+
 }
 
+#seatDescription span {
+padding-left: 5px;
+
+}
+
+#seatDescription {
+position: absolute;
+right: 100px;
+}
 
 
 

@@ -1,0 +1,75 @@
+﻿@*@using MvcRestaurant.ViewModel*@
+@*@using MvcRestaurant.Models*@
+
+@model MvcRestaurant.Models.Waiter
+
+@{
+    ViewBag.Title = "TablesView";
+}
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>WAITER</legend>
+        
+        @Html.HiddenFor(model => model.WaiterId)
+   
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name )
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+ 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Note)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Note )
+            @Html.ValidationMessageFor(model => model.Note)
+        </div>    
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+    <table>
+ <tr>
+    <th>
+      Table ID
+     </th>
+    <th>
+    Dimension
+    </th>
+      <th>
+   Image
+    </th>
+
+    <th></th>
+  </tr>
+@foreach (var item in Model.Tables)
+{ 
+    <tr>
+        <td>
+            @item.TableId
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DimensionTable)
+        </td>
+      <td>
+     @Html.DisplayFor(modelItem => item.ImageUrl)
+          
+ </td>
+ 
+    </tr>
+ 
+}
+</table>
+
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

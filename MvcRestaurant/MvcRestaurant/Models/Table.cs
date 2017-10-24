@@ -23,6 +23,7 @@ namespace MvcRestaurant.Models
         public Coords CoordinatesTable { get; set;}
         public string ImageUrl { get; set; }
         public virtual List<Reservation> BookingForms { get; set; }
+        public int? WaiterId { get; set; }
         //public ImageHelper Image { get; set; }
 
     }
