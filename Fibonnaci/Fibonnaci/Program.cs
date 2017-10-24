@@ -12,8 +12,8 @@ namespace Fibonnaci
         {
             Fibo fib = new Fibo();
             bool printNumber = true;
-            Console.Write("Enter the limit:");
-            int count = int.Parse(Console.ReadLine());
+            //Console.Write("Enter the limit:");
+            //int count = int.Parse(Console.ReadLine());
             while (printNumber)
             {
                 IEnumerator<int> enumer = Fibonnaci().GetEnumerator();
