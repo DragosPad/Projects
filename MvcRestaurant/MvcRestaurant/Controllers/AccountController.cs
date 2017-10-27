@@ -73,7 +73,7 @@ namespace MvcRestaurant.Controllers
         // POST: /Account/Register
 
         [HttpPost]
-        public ActionResult Register(RegisterModel model)
+        public ActionResult Register(Registers model)
         {
             if (ModelState.IsValid)
             {

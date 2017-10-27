@@ -39,9 +39,17 @@ namespace MvcRestaurant.Controllers
             return View();
         }
 
-        public ActionResult TablesView(Waiter wait, int? tabId)
+        [Authorize]
+        public ActionResult TablesView( int waiterId)
         {
-           wait = db.Waiters.Include(w => w.Tables).Single(w => w.WaiterId == tabId);
+          Waiter wait = db.Waiters.Include(w => w.Tables).Single(w => w.WaiterId == waiterId);
+          var enumStatus = from Status e in Enum.GetValues(typeof(Status))
+                         select new
+                         {
+                             ID = (int)e,
+                             Name = e.ToString()
+                         };
+          ViewBag.EnumList = new SelectList(enumStatus, "ID", "Name");
            // ViewBag.WaiterID = new SelectList(db.Waiters, "WaiterId", "Name", listWaiter.WaiterId);
 
             return View(wait);

@@ -14,9 +14,6 @@
         <th>
             Number table
         </th>
-        <th>
-           Write Note
-        </th>
          <th>
            Tables View
         </th>
@@ -31,11 +28,8 @@
           <td>
               @Html.DisplayFor(model => item.Tables.Count)
           </td>
-          <td>
-               @Html.ActionLink("Write Note", "WriteNote", "Waiters", new { id = item.WaiterId }, null)
-          </td>
            <td>
-            @Html.ActionLink("Tables View", "TablesView", "Waiters", new { id = item.TableId }, null)
+            @Html.ActionLink("Tables View", "TablesView", "Waiters", new { waiterId = item.WaiterId }, null)
        </td>
       </tr>
       

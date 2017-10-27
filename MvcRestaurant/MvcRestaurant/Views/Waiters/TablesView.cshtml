@@ -2,6 +2,7 @@
 @*@using MvcRestaurant.Models*@
 
 @model MvcRestaurant.Models.Waiter
+          @using MvcRestaurant.Models
 
 @{
     ViewBag.Title = "TablesView";
@@ -12,29 +13,16 @@
     <fieldset>
         <legend>WAITER</legend>
         
-        @Html.HiddenFor(model => model.WaiterId)
+      @*  @Html.HiddenFor(model => model.WaiterId)*@
    
-
-
-        <div class="editor-label">
+        @*<div class="editor-label">
             @Html.LabelFor(model => model.Name)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Name )
+            @Html.DisplayFor(model => model.Name )
             @Html.ValidationMessageFor(model => model.Name)
-        </div>
- 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Note)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Note )
-            @Html.ValidationMessageFor(model => model.Note)
-        </div>    
+        </div>*@
 
-        <p>
-            <input type="submit" value="Save" />
-        </p>
     </fieldset>
     <table>
  <tr>
@@ -44,9 +32,15 @@
     <th>
     Dimension
     </th>
-      <th>
-   Image
-    </th>
+     <th>
+         Status
+     </th>
+     <th>
+         Chooese status
+     </th>
+     <th>
+         Write Note
+     </th>
 
     <th></th>
   </tr>
@@ -59,10 +53,24 @@
         <td>
             @Html.DisplayFor(modelItem => item.DimensionTable)
         </td>
-      <td>
-     @Html.DisplayFor(modelItem => item.ImageUrl)
-          
- </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DropDownList("Status", ViewBag.EnumList as SelectList)
+        
+        </td>
+        <td>
+            @Html.ActionLink("Write Note", "WriteNote", "Waiters", new { @class = "Not-active" }, null)
+           @* @if (item.Status == 0)
+            {
+                @Html.ActionLink("Write Note", "WriteNote", "Waiters", new { id = item.WaiterId, @class = "active" }, null)
+            }
+            else
+            {
+            @Html.ActionLink("Write Note", "WriteNote", "Waiters", new { id = item.WaiterId }, null)
+            }*@
+        </td>
  
     </tr>
  

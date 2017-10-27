@@ -43,7 +43,7 @@ namespace MvcRestaurant.Models
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterModel
+    public class Registers
     {
         [Required]
         [Display(Name = "User name")]

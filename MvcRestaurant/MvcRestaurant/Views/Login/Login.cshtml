@@ -26,6 +26,11 @@
             @Html.EditorFor(model => model.passWord)
             @Html.ValidationMessageFor(model => model.passWord)
         </div>
+
+         <div class="editor-label">
+                @Html.CheckBoxFor(model => model.RememberMe)
+                @Html.LabelFor(model => model.RememberMe)
+            </div>
    
            <p>
             <input type="submit" value="Login" />

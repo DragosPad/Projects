@@ -436,11 +436,18 @@ top: -44px;
 }
 
 .notes {
-    width: 400px;
+    width: 1100px;
     height: 300px;
     border: 2px solid #ccc;
        background-color: #f8f8f8;
        color: red;
 }
 
-   
+.Not-active {
+pointer-events: none;
+color: gray;
+opacity: 0.3;
+cursor: default;
+
+
+} 

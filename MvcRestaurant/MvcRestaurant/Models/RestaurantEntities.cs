@@ -11,6 +11,7 @@ namespace MvcRestaurant.Models
         public DbSet<Table> Tables { get; set; }
         public DbSet<Waiter> Waiters { get; set; }
         public DbSet<Reservation> BookingForms { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

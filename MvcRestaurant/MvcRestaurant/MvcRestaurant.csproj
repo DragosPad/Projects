@@ -108,6 +108,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Registers.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\RestaurantEntities.cs" />
     <Compile Include="Models\RestaurantInfo.cs" />
@@ -230,6 +231,7 @@
     <Content Include="Views\Waiters\Index.cshtml" />
     <Content Include="Views\Waiters\WriteNote.cshtml" />
     <Content Include="Views\Waiters\TablesView.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
