@@ -1,4 +1,5 @@
-﻿@model MvcRestaurant.Models.Waiter
+﻿@model MvcRestaurant.ViewModel.WaiterTableViewModel
+          @using MvcRestaurant.Models
 
 
 @{
@@ -7,22 +8,47 @@
 
 <h2>WriteNote</h2>
 
-@using (Html.BeginForm("Index", "Waiters")) {
+@using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>WriteNote</legend>
 
        
         <div>
-            @Html.TextAreaFor(model => model.Note, new {id = "note1", @class="notes"})
+            @Html.TextAreaFor(model => model.Waiter.Note, new {id = "note1", @class="notes"})
+            @Html.DisplayFor(modelItem => modelItem.Waiter.TableId)
+        
             
         </div>
-        
+        @*<div>
+            @Html.DropDownList("Status", ViewBag.EnumList as SelectList)
+        </div>*@
+        </fieldset>
+    @*<table>
+ <tr>
+     <th>
+         Chooese status
+     </th>
+    <th></th>
+  </tr>
+@foreach (var item in Model.Waiter.Tables)
+{ 
+    <tr>
+        <td>
+             @Html.DisplayFor(modelItem => item.DimensionTable)
+        </td>
+ 
+    </tr>
+ 
+}
+</table>
+
+}*@
 
            <p>
             <input type="submit" value="Save" />
         </p>
        
-    </fieldset>
+  
 }
 

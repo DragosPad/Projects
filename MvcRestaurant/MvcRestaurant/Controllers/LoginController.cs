@@ -10,22 +10,27 @@ namespace MvcRestaurant.Controllers
 {
     public class LoginController : Controller
     {
+        private RestaurantEntities dbContext;
+
+        public LoginController()
+        {
+            dbContext = new RestaurantEntities();
+        }
         public ActionResult Login()
         {
             return View();
         }
 
-        //User is the model. and value for returnUrl will be automatically received by this action.
         [HttpPost]
-        public ActionResult Login(User u, string returnUrl)
+        public ActionResult Login(User u, string returnUrl, bool RememberMe)
         {
+            
             if (ModelState.IsValid)
             {
-                if (Membership.ValidateUser(u.UserName, u.passWord))
+                if(dbContext.Users.Any(user => user.UserName == u.UserName && user.passWord == u.passWord))
                 {
-                    FormsAuthentication.SetAuthCookie(u.UserName, u.RememberMe);
-                    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
-                        && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                    FormsAuthentication.SetAuthCookie(u.UserName.ToUpper(), RememberMe);
+                    if (!string.IsNullOrEmpty(returnUrl))
                     {
                         return Redirect(returnUrl);
                     }
@@ -36,35 +41,11 @@ namespace MvcRestaurant.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                    ModelState.AddModelError("authenticationError",
+            "User name or Password is wrong. Try it again");
+                    
                 }
             }
-
-            //if (ModelState.IsValid)
-            //{
-            //    string struName = Convert.ToString(u.UserName).ToUpper().Trim();
-            //    string strPassword = Convert.ToString(u.passWord).ToUpper().Trim();
-
-            //    //Verify credentials against database in real project
-            //    if (struName == "123@123.com".ToUpper() && strPassword == "123".ToUpper())
-            //    {
-            //        FormsAuthentication.SetAuthCookie(u.UserName.ToUpper(), false);
-            //        if (!string.IsNullOrEmpty(returnUrl))
-            //        {
-            //            return Redirect(returnUrl);
-            //        }
-            //        else
-            //        {
-            //            return RedirectToAction("details", "Test");
-            //        }
-            //    }
-            //    else
-            //    {
-            //        ModelState.AddModelError("authenticationError",
-            //"User name or Password is wrong. Try it again");
-            //        //lblError.Text = "User name or Password is wrong. Try it again";
-            //    }
-            //}
             return View(u);
         }
 
@@ -82,27 +63,19 @@ namespace MvcRestaurant.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(Registers model)
+        public ActionResult Register(Registers register)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    // Attempt to register the user
-            //    MembershipCreateStatus createStatus;
-            //    Membership.CreateUser(model.UserName, model.Password, model.Email, "question", "answer", true, null, out createStatus);
-
-            //    if (createStatus == MembershipCreateStatus.Success)
-            //    {
-            //        FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
-            //        return RedirectToAction("Index", "Home");
-            //    }
-            //    else
-            //    {
-            //        ModelState.AddModelError("", ErrorCodeToString(createStatus));
-            //    }
-            //}
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
+            User registerLogin = new User();
+            if (ModelState.IsValid)
+            {
+               
+                registerLogin.UserName = register.UserName;
+                registerLogin.passWord = register.Password;
+                dbContext.Users.Add(registerLogin);
+                dbContext.SaveChanges();
+            }
+            
+            return View(register);
         }
 
     }

@@ -5,7 +5,9 @@
 }
 
 <h2>Login</h2>
-
+<p>
+    Please enter your user name and password. @Html.ActionLink("Register", "Register" ,"Login") if you don't have an account.
+</p>
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>

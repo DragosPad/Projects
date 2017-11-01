@@ -108,7 +108,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\Registers.cs" />
+    <Compile Include="Models\Register.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\RestaurantEntities.cs" />
     <Compile Include="Models\RestaurantInfo.cs" />
@@ -120,6 +120,7 @@
     <Compile Include="ViewModel\BookingTable.cs" />
     <Compile Include="ViewModel\ImageHelper.cs" />
     <Compile Include="ViewModel\TableView.cs" />
+    <Compile Include="ViewModel\WaiterTableViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\MvcRestaurant.sdf" />

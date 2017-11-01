@@ -17,11 +17,11 @@ namespace MvcRestaurant.Controllers
         private RestaurantEntities db = new RestaurantEntities();
         //
         // GET: /Waiters/
-
+        [Authorize]
         public ActionResult Index()
         {
-            var wait = db.Waiters.Include(c => c.Tables);
-            return View(wait);
+            var waiter = db.Waiters.Include(c => c.Tables);
+            return View(waiter);
         }
 
         public ActionResult WriteNote()
@@ -32,27 +32,39 @@ namespace MvcRestaurant.Controllers
         }
 
         [HttpPost]
-        public ActionResult WriteNote(Waiter wait)
+        public ActionResult WriteNote(int waiterId)
         {
-            db.Waiters.Add(wait);
+            WaiterTableViewModel viewModel = new WaiterTableViewModel();
+            Waiter waiter = db.Waiters.Include(w => w.Tables).Single(w => w.WaiterId == waiterId);
+            viewModel.Waiter = waiter;
+            var enumStatus = from Status e in Enum.GetValues(typeof(Status))
+                             select new
+                             {
+                                 ID = (int)e,
+                                 Name = e.ToString()
+                             };
+            ViewBag.EnumList = new SelectList(enumStatus, "ID", "Name");
+            db.Waiters.Add(waiter);
             db.SaveChanges();
-            return View();
+            return View(viewModel);
         }
 
-        [Authorize]
+       // [Authorize]
         public ActionResult TablesView( int waiterId)
         {
-          Waiter wait = db.Waiters.Include(w => w.Tables).Single(w => w.WaiterId == waiterId);
+            WaiterTableViewModel viewModel = new WaiterTableViewModel();
+          Waiter waiter = db.Waiters.Include(w => w.Tables).Single(w => w.WaiterId == waiterId);
+          viewModel.Waiter = waiter;
           var enumStatus = from Status e in Enum.GetValues(typeof(Status))
-                         select new
-                         {
-                             ID = (int)e,
-                             Name = e.ToString()
-                         };
+                           select new
+                           {
+                               ID = (int)e,
+                               Name = e.ToString()
+                           };
           ViewBag.EnumList = new SelectList(enumStatus, "ID", "Name");
            // ViewBag.WaiterID = new SelectList(db.Waiters, "WaiterId", "Name", listWaiter.WaiterId);
 
-            return View(wait);
+          return View(viewModel);
         }
     }
 }

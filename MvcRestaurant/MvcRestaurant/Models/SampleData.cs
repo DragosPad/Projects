@@ -53,8 +53,8 @@ namespace MvcRestaurant.Models
             }.ForEach(b => context.Waiters.Add(b));
 
             var u = new List<User> {
-               new User {UserName = "1Pas@", passWord = "23"},
-               new User {UserName = "2Pas@", passWord = "26"}
+               new User {UserName = "1Pas@yahoo.com", passWord = "23"},
+               new User {UserName = "2Pas@yahoo.com", passWord = "26"}
             };
             u.ForEach(c => context.Users.Add(c)); 
            

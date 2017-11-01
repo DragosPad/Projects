@@ -1,7 +1,7 @@
 ﻿@*@using MvcRestaurant.ViewModel*@
 @*@using MvcRestaurant.Models*@
 
-@model MvcRestaurant.Models.Waiter
+@model MvcRestaurant.ViewModel.WaiterTableViewModel
           @using MvcRestaurant.Models
 
 @{
@@ -44,7 +44,7 @@
 
     <th></th>
   </tr>
-@foreach (var item in Model.Tables)
+@foreach (var item in Model.Waiter.Tables)
 { 
     <tr>
         <td>
@@ -61,15 +61,16 @@
         
         </td>
         <td>
-            @Html.ActionLink("Write Note", "WriteNote", "Waiters", new { @class = "Not-active" }, null)
-           @* @if (item.Status == 0)
+           @* @Html.ActionLink("Write Note", "WriteNote", "Waiters", new { @class = "Not-active" }, null)*@
+            @if (item.Status == Status.Free)
             {
-                @Html.ActionLink("Write Note", "WriteNote", "Waiters", new { id = item.WaiterId, @class = "active" }, null)
+                 @Html.ActionLink("Select status and write note", "WriteNote", "Waiters", new { id = item.WaiterId }, null)
+               
             }
             else
             {
-            @Html.ActionLink("Write Note", "WriteNote", "Waiters", new { id = item.WaiterId }, null)
-            }*@
+             @Html.ActionLink("Select status and write note", "WriteNote", "Waiters", null, new { id = item.WaiterId, @class = "Not-active" })
+            }
         </td>
  
     </tr>
