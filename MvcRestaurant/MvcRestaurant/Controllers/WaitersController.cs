@@ -24,19 +24,12 @@ namespace MvcRestaurant.Controllers
             return View(waiter);
         }
 
-        public ActionResult WriteNote()
-        {
-
-            ViewBag.BookingFormId = new SelectList(db.Waiters, "WaiterId");
-            return View();
-        }
-
-        [HttpPost]
         public ActionResult WriteNote(int waiterId)
         {
             WaiterTableViewModel viewModel = new WaiterTableViewModel();
             Waiter waiter = db.Waiters.Include(w => w.Tables).Single(w => w.WaiterId == waiterId);
-            viewModel.Waiter = waiter;
+
+            ViewBag.BookingFormId = new SelectList(db.Waiters, "WaiterId");
             var enumStatus = from Status e in Enum.GetValues(typeof(Status))
                              select new
                              {
@@ -44,8 +37,18 @@ namespace MvcRestaurant.Controllers
                                  Name = e.ToString()
                              };
             ViewBag.EnumList = new SelectList(enumStatus, "ID", "Name");
-            db.Waiters.Add(waiter);
-            db.SaveChanges();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult WriteNote()
+        {
+            WaiterTableViewModel viewModel = new WaiterTableViewModel();
+           // Waiter waiter = db.Waiters.Include(w => w.Tables).Single(w => w.WaiterId == waiterId);
+           // viewModel.Waiter = waiter;
+           
+            //db.Waiters.Add(viewModel);
+            //db.SaveChanges();
             return View(viewModel);
         }
 
@@ -65,6 +68,15 @@ namespace MvcRestaurant.Controllers
            // ViewBag.WaiterID = new SelectList(db.Waiters, "WaiterId", "Name", listWaiter.WaiterId);
 
           return View(viewModel);
+        }
+
+        public ActionResult Coordinator()
+        {
+            TablesAndWaterView viewModel = new TablesAndWaterView();
+            viewModel.Table1 = (from o in db.Tables select o).ToList();
+            //viewModel.Waiter1 = from or in db.Waiters select or;
+            return View(viewModel);
+            
         }
     }
 }

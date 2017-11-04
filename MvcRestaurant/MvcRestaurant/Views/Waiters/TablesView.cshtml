@@ -64,12 +64,12 @@
            @* @Html.ActionLink("Write Note", "WriteNote", "Waiters", new { @class = "Not-active" }, null)*@
             @if (item.Status == Status.Free)
             {
-                 @Html.ActionLink("Select status and write note", "WriteNote", "Waiters", new { id = item.WaiterId }, null)
+                 @Html.ActionLink("Select status and write note", "WriteNote", "Waiters", new { waiterId = item.WaiterId }, null)
                
             }
             else
             {
-             @Html.ActionLink("Select status and write note", "WriteNote", "Waiters", null, new { id = item.WaiterId, @class = "Not-active" })
+             @Html.ActionLink("Select status and write note", "WriteNote", "Waiters", null, new { waiterId = item.WaiterId, @class = "Not-active" })
             }
         </td>
  

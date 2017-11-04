@@ -20,9 +20,20 @@
               <li class="first"><a href="/" id="current">Home</a></li>
               <li><a href="/Reservation/">Reservation</a></li> 
              <li>
-               @*  @Html.ActionLink("Login", "Login", "Login")*@
-                 <a href="/Login/Login">Login</a></li> 
+              
+                 @if (HttpContext.Current.User.Identity.IsAuthenticated == true)
+                 {
+                     @Html.ActionLink("Logout","Logout","Login")
+                 }
+                 else
+                 {
+                   @Html.ActionLink("Login", "Login", "Login")
+                 }
+                 </li>
               <li><a href="/Waiters/">Waiters</a></li>
+             <li>
+                 @Html.ActionLink("Coordinator", "Coordinator", "Waiters")
+             </li>
 
               
          </ul>

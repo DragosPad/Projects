@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MvcRestaurant.ViewModel.TablesAndWaterView>
+          @using MvcRestaurant.Models
+       
+
+
+@{
+    ViewBag.Title = "Coordinator";
+}
+
+<h2>Coordinator</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Coordinators AND Tables</legend>
+        
+
+    </fieldset>
+    @*<table>*@
+ <tr>
+    <th>
+      Table ID
+     </th>
+    <th>
+    Dimension
+    </th>
+     <th>
+         Status
+     </th>
+
+    <th></th>
+  </tr>
+ @*@foreach (var item in Model)
+{ 
+    <tr>
+        <td>
+            @item.Table1.Status
+        </td>
+     
+        <td>
+            @Html.DisplayFor(modelItem => item.Table1.DimensionTable)
+        </td>
+        
+        <td>
+           
+        </td>
+ 
+    </tr>*@
+ 
+}
+@*</table>*@
+
+}

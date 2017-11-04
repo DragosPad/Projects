@@ -63,7 +63,7 @@ namespace MvcRestaurant.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(Registers register)
+        public ActionResult Register(Register register)
         {
             User registerLogin = new User();
             if (ModelState.IsValid)
