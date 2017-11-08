@@ -14,7 +14,6 @@ namespace MvcRestaurant.Models
         public Waiter Coordinator { get; set; }
         public string Note { get; set; }
         public virtual List<Table> Tables { get; set; }
-        public int? TableId { get; set; }
         public Status Status { get; set; }
         public IEnumerable<Status> Items { get; set; }
         public User User { get; set; }

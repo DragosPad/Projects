@@ -235,6 +235,7 @@
     <Content Include="Views\Waiters\TablesView.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Waiters\Coordinator.cshtml" />
+    <Content Include="Views\Waiters\Change.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

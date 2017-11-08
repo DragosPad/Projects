@@ -24,6 +24,7 @@ namespace MvcRestaurant.Models
         public string ImageUrl { get; set; }
         public virtual List<Reservation> BookingForms { get; set; }
         public int? WaiterId { get; set; }
+        public virtual Waiter Waiter { get; set; }
         //public ImageHelper Image { get; set; }
 
     }

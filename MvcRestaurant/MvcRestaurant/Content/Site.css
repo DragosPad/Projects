@@ -450,4 +450,24 @@ opacity: 0.3;
 cursor: default;
 
 
-} 
+}
+
+.restaurantTables {
+border: 0px solid #000;
+color: #666666;
+min-width: 500px;
+width: 100%;
+
+}
+
+.coordinatorTable {
+border: 1px solid black;
+border-collapse: collapse;
+
+}
+
+.coordinatorTable td {
+border: 1px solid #000;
+line-height: 25px;
+
+}

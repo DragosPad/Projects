@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MvcRestaurant.ViewModel.TablesAndWaterView>
+﻿@model MvcRestaurant.ViewModel.TablesAndWaterView
           @using MvcRestaurant.Models
        
 
@@ -16,38 +16,48 @@
         
 
     </fieldset>
-    @*<table>*@
+    <table class ="coordinatorTable">
  <tr>
     <th>
-      Table ID
+     Water Name
      </th>
     <th>
-    Dimension
+      Table Coordinates
     </th>
      <th>
-         Status
+         Table Dimension
+     </th>
+     <th>
+         Table Status
+     </th>
+     <th>
+         Change Details
      </th>
 
-    <th></th>
   </tr>
- @*@foreach (var item in Model)
+ @foreach (var item in Model.AllocatedTable.Keys)
 { 
     <tr>
-        <td>
-            @item.Table1.Status
-        </td>
-     
-        <td>
-            @Html.DisplayFor(modelItem => item.Table1.DimensionTable)
-        </td>
-        
-        <td>
+        <td rowspan = @(Model.AllocatedTable[item].Count + 1)>
+            @item.Name
            
         </td>
+            @foreach (var tableItem in Model.AllocatedTable[item])
+            {
+              <tr>
+                   <td>
+                     { @tableItem.CoordinatesTable.CoordinateX, @tableItem.CoordinatesTable.CoordinateY}
+
+                  </td>
+                  <td>@tableItem.DimensionTable</td>
+                  <td>@tableItem.Status.ToString()</td>
+                  <td> @Html.ActionLink("Change", "Change", "Waiters", new {tableId = tableItem.WaiterId }, null)</td>
+              </tr>
+            }
  
-    </tr>*@
+    </tr>
  
 }
-@*</table>*@
+</table>
 
 }

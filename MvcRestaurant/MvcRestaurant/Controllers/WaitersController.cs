@@ -73,10 +73,44 @@ namespace MvcRestaurant.Controllers
         public ActionResult Coordinator()
         {
             TablesAndWaterView viewModel = new TablesAndWaterView();
-            viewModel.Table1 = (from o in db.Tables select o).ToList();
-            //viewModel.Waiter1 = from or in db.Waiters select or;
+
+           var tables = db.Tables.Include(t => t.Waiter).ToList();
+          
+           viewModel.AllocatedTable = tables.GroupBy(i => i.WaiterId).ToDictionary(m => m.First().Waiter, m => m.ToList());
+           viewModel.WaiterList = db.Waiters.Where(w => w.Tables.Any() == false).ToList();
+
             return View(viewModel);
             
+        }
+
+        public ActionResult Change(int tableId)
+        {
+           // TablesAndWaterView viewModel = new TablesAndWaterView();
+
+            Table table = db.Tables.Include(c => c.Waiter).Single(c => c.TableId == tableId);
+
+            var enumStatus = from Status e in Enum.GetValues(typeof(Status))
+                             select new
+                             {
+                                 ID = (int)e,
+                                 Name = e.ToString()
+                             };
+            ViewBag.EnumList = new SelectList(enumStatus, "ID", "Name");
+
+            
+            return View(table);
+        }
+
+        [HttpPost]
+        public ActionResult Change(Table table)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(table).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(table);
         }
     }
 }

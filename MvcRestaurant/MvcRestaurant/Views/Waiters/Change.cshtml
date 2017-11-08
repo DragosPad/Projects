@@ -1,0 +1,43 @@
+﻿@model MvcRestaurant.Models.Table
+          
+
+@{
+    ViewBag.Title = "Change";
+}
+
+<h2>Change</h2>
+
+@using (Html.BeginForm())
+{ @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Change Table and Waiter </legend>
+          @Html.HiddenFor(model => model.TableId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DimensionTable)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DimensionTable )
+            @Html.ValidationMessageFor(model => model.DimensionTable)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Status)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Status", ViewBag.EnumList as SelectList)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Waiter.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Waiter.Name)
+            @Html.ValidationMessageFor(model => model.Waiter.Name)
+        </div>
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+        
+   </fieldset>
+
+}
