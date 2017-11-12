@@ -11,18 +11,8 @@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>WAITER</legend>
+        <legend>TABLE</legend>
         
-      @*  @Html.HiddenFor(model => model.WaiterId)*@
-   
-        @*<div class="editor-label">
-            @Html.LabelFor(model => model.Name)
-        </div>
-        <div class="editor-field">
-            @Html.DisplayFor(model => model.Name )
-            @Html.ValidationMessageFor(model => model.Name)
-        </div>*@
-
     </fieldset>
     <table>
  <tr>
@@ -38,9 +28,6 @@
      <th>
          Chooese status
      </th>
-     <th>
-         Write Note
-     </th>
 
     <th></th>
   </tr>
@@ -50,18 +37,14 @@
         <td>
             @item.TableId
         </td>
-        <td>
+        <td> 
             @Html.DisplayFor(modelItem => item.DimensionTable)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @Html.DropDownList("Status", ViewBag.EnumList as SelectList)
-        
-        </td>
-        <td>
-           @* @Html.ActionLink("Write Note", "WriteNote", "Waiters", new { @class = "Not-active" }, null)*@
+   
             @if (item.Status == Status.Free)
             {
                  @Html.ActionLink("Select status and write note", "WriteNote", "Waiters", new { waiterId = item.WaiterId }, null)

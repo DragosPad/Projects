@@ -1,4 +1,5 @@
-﻿@model MvcRestaurant.Models.Table
+﻿@model MvcRestaurant.ViewModel.ChangeTable
+           @using MvcRestaurant.Models
           
 
 @{
@@ -12,32 +13,71 @@
 
     <fieldset>
         <legend>Change Table and Waiter </legend>
-          @Html.HiddenFor(model => model.TableId)
+          @Html.HiddenFor(model => model.Table.TableId)
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.DimensionTable)
+            @Html.LabelFor(model => model.Table.DimensionTable)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.DimensionTable )
-            @Html.ValidationMessageFor(model => model.DimensionTable)
+            @Html.EditorFor(model => model.Table.DimensionTable )
+            @Html.ValidationMessageFor(model => model.Table.DimensionTable)
         </div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.Status)
+            @Html.LabelFor(model => model.Table.Status)
         </div>
         <div class="editor-field">
-            @Html.DropDownList("Status", ViewBag.EnumList as SelectList)
+            @Html.DropDownListFor(model => model.Table.Status, Model.Status)
         </div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.Waiter.Name)
+            @Html.LabelFor(model => model.Table.Waiter.Name)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Waiter.Name)
-            @Html.ValidationMessageFor(model => model.Waiter.Name)
+            @Html.DropDownListFor(model => model.Table.WaiterId, Model.Waiters)
+            
         </div>
         <p>
             <input type="submit" value="Save" />
         </p>
         
    </fieldset>
+    
+    <table class ="coordinatorTable">
+        <tr>
+            <th>
+                Name Waiter
+            </th>
+            <th>
+                Coordinates Table
+            </th>
+            <th>
+                Dimension Table
+            </th>
+            <th>
+                Status Table
+            </th>
+        </tr>
+@foreach (var item in Model.AllocatedTable.Keys)
+{ 
+    <tr>
+        <td rowspan = @(Model.AllocatedTable[item].Count + 1)>
+            @item.Name
+           
+        </td>
+            @foreach (var tableItem in Model.AllocatedTable[item])
+            {
+              <tr>
+                   <td>
+                     { @tableItem.CoordinatesTable.CoordinateX, @tableItem.CoordinatesTable.CoordinateY}
+
+                  </td>
+                  <td>@tableItem.DimensionTable</td>
+                  <td>@tableItem.Status.ToString()</td>
+              </tr>
+            }
+ 
+    </tr>
+ 
+}
+    </table>
 
 }

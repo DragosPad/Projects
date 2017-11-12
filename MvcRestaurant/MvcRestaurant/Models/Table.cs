@@ -23,7 +23,7 @@ namespace MvcRestaurant.Models
         public Coords CoordinatesTable { get; set;}
         public string ImageUrl { get; set; }
         public virtual List<Reservation> BookingForms { get; set; }
-        public int? WaiterId { get; set; }
+        public virtual int? WaiterId { get; set; }
         public virtual Waiter Waiter { get; set; }
         //public ImageHelper Image { get; set; }
 
@@ -34,14 +34,14 @@ namespace MvcRestaurant.Models
 
     public class Coords
     {
-       private int x, y;
+       private int? x, y;
        
-        public int CoordinateX
+        public int? CoordinateX
         {
             get { return x; }
             set { x = value; }
         }
-        public int CoordinateY
+        public int? CoordinateY
         {
             get { return y; }
             set { y = value; }
