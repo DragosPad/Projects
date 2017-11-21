@@ -19,8 +19,7 @@
             @Html.LabelFor(model => model.Table.DimensionTable)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Table.DimensionTable )
-            @Html.ValidationMessageFor(model => model.Table.DimensionTable)
+            @Html.DropDownListFor(model => model.Table.DimensionTable, Model.Dimensions)
         </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.Table.Status)
@@ -41,43 +40,5 @@
         
    </fieldset>
     
-    <table class ="coordinatorTable">
-        <tr>
-            <th>
-                Name Waiter
-            </th>
-            <th>
-                Coordinates Table
-            </th>
-            <th>
-                Dimension Table
-            </th>
-            <th>
-                Status Table
-            </th>
-        </tr>
-@foreach (var item in Model.AllocatedTable.Keys)
-{ 
-    <tr>
-        <td rowspan = @(Model.AllocatedTable[item].Count + 1)>
-            @item.Name
-           
-        </td>
-            @foreach (var tableItem in Model.AllocatedTable[item])
-            {
-              <tr>
-                   <td>
-                     { @tableItem.CoordinatesTable.CoordinateX, @tableItem.CoordinatesTable.CoordinateY}
-
-                  </td>
-                  <td>@tableItem.DimensionTable</td>
-                  <td>@tableItem.Status.ToString()</td>
-              </tr>
-            }
- 
-    </tr>
- 
-}
-    </table>
-
+    
 }

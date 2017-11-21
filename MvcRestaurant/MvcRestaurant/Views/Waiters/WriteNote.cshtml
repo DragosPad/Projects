@@ -12,7 +12,7 @@
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>WriteNote</legend>
-
+        @Html.HiddenFor(model => model.Table.TableId)
        
         <div>
             @Html.TextAreaFor(model => model.Waiter.Note, new {id = "note1", @class="notes"})
@@ -20,9 +20,15 @@
         
             
         </div>
-        <div>
-            @Html.DropDownList("Status", ViewBag.EnumList as SelectList)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Table.Status)
         </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Table.Status, Model.Statuses)
+        </div>
+        @*<div>
+            @Html.DropDownList("Status", ViewBag.EnumList as SelectList)
+        </div>*@
         </fieldset>
     @*<table>
  <tr>
@@ -48,7 +54,18 @@
            <p>
             <input type="submit" value="Save" />
         </p>
-       
+    
+    <p>
+            <input type="submit" value="Delete Note" id="clearNote" />
+        </p>
   
 }
-
+<script>
+    $(function(){
+        $("#clearNote").click(function (event) {
+            event.preventDefault();
+            $("#note1").val("");
+        
+        });
+    });
+</script>

@@ -56,8 +56,31 @@
             }
  
     </tr>
- 
+       
 }
 </table>
+    <p>
+        @Html.ActionLink("AddWaiter", "AddWaiter", "Waiters")
+    </p>
+    <p>
+        @Html.ActionLink("AddTable", "AddTable", "Waiters")
+    </p>
+   
+    <table>
+ <tr>
+    <th>
+     Water Name
+     </th>
+
+  </tr>
+        @foreach (var item in Model.WaiterList)
+        {
+          <tr>
+              <td>
+                  @item.Name
+              </td>
+          </tr>
+        }
+        </table>
 
 }

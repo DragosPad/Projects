@@ -48,7 +48,9 @@ namespace MvcRestaurant.Models
                  }},
                 new Waiter { Name = "Anton", NumberEmployee = 8, Coordinator = coordinator,
                 Tables = new List<Table>() { x[4], x[5], x[6]
-                     }}
+                     }},
+                     new Waiter {Name = "Florin", NumberEmployee = 4, Coordinator = coordinator},
+                     new Waiter {Name = "Jack", NumberEmployee  = 2, Coordinator = coordinator}
             
             }.ForEach(b => context.Waiters.Add(b));
 
