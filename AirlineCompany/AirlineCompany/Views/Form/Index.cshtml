@@ -1,4 +1,4 @@
-﻿@model AirlineCompany.Models.Form
+﻿@model IEnumerable<AirlineCompany.Models.Fligth>
 
 
 
@@ -11,7 +11,7 @@
     <fieldset>
         <legend>Form</legend>
 
-        <div class="editor-label">
+        <@*div class="editor-label">
             @Html.LabelFor(model => model.DateForm)
         </div>
         <div class="editor-field">
@@ -25,7 +25,7 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.Location)
             @Html.ValidationMessageFor(model => model.Location)
-        </div>
+        </div>*@
    
            <p>
             <input type="submit" value="Complete" />
@@ -34,6 +34,10 @@
              </p>
          <p> @Html.ActionLink("View Fligth", "StartLocation", "Form")
 </p>
+        <p>
+            Find: @Html.TextBox("search")
+            <input type="submit" value="Search" />
+        </p>
     </fieldset>
 }
 

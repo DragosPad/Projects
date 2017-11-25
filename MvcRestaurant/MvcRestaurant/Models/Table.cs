@@ -17,7 +17,6 @@ namespace MvcRestaurant.Models
     public class Table
     {
         public int TableId { get; set; }
-        //public int BookingFormId { get; set; }
         public int DimensionTable { get; set; }
         public Status? Status { get; set; }
         public Coords CoordinatesTable { get; set;}
@@ -25,7 +24,6 @@ namespace MvcRestaurant.Models
         public virtual List<Reservation> BookingForms { get; set; }
         public virtual int? WaiterId { get; set; }
         public virtual Waiter Waiter { get; set; }
-        //public ImageHelper Image { get; set; }
 
     }
 

@@ -16,24 +16,29 @@ namespace AirlineCompany.Controllers
         //
         // GET: /Form/
         private AirlineEntities db = new AirlineEntities();
-        public ActionResult Index()
+        public ActionResult Index(string search)
         {
-            
-            return View();
+            var searchForm = from s in db.Fligths
+                             select s;
+            if (!String.IsNullOrEmpty(search))
+            {
+                searchForm = searchForm.Where(s => s.Location.Contains(search));
+            }
+            return View(searchForm.ToList());
         }
         [HttpPost]
-        public ActionResult Index(Form form)
+        public ActionResult Index()
         {
-            if (ModelState.IsValid)
-            {
-                //db.Forms.Add(form);
-                //db.SaveChanges();
-                form.Message = "Successful completion";
-                return RedirectToAction("StartLocation");
-            }
+            //if (ModelState.IsValid)
+            //{
+            //    //db.Forms.Add(form);
+            //    //db.SaveChanges();
+            //    form.Message = "Successful completion";
+            //    return RedirectToAction("StartLocation");
+            //}
             
             
-            return View(form);
+            return View();
         
         }
 
@@ -45,7 +50,7 @@ namespace AirlineCompany.Controllers
         public ActionResult StartLocation()
         {
           //Fligth fligth = new Fligth();
-            var fligth = db.Forms.Include(a => a.Fligth);
+            var fligth = db.Fligths.ToList();
 
             return View(fligth);
         }

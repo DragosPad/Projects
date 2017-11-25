@@ -24,10 +24,10 @@ namespace MvcRestaurant.Controllers
         [HttpPost]
         public ActionResult Login(User u, string returnUrl, bool RememberMe)
         {
-            
+
             if (ModelState.IsValid)
             {
-                if(dbContext.Users.Any(user => user.UserName == u.UserName && user.passWord == u.passWord))
+                if (dbContext.Users.Any(user => user.UserName == u.UserName && user.passWord == u.passWord))
                 {
                     FormsAuthentication.SetAuthCookie(u.UserName.ToUpper(), RememberMe);
                     if (!string.IsNullOrEmpty(returnUrl))
@@ -43,7 +43,7 @@ namespace MvcRestaurant.Controllers
                 {
                     ModelState.AddModelError("authenticationError",
             "User name or Password is wrong. Try it again");
-                    
+
                 }
             }
             return View(u);
@@ -68,13 +68,13 @@ namespace MvcRestaurant.Controllers
             User registerLogin = new User();
             if (ModelState.IsValid)
             {
-               
+
                 registerLogin.UserName = register.UserName;
                 registerLogin.passWord = register.Password;
                 dbContext.Users.Add(registerLogin);
                 dbContext.SaveChanges();
             }
-            
+
             return View(register);
         }
 

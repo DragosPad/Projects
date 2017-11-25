@@ -13,7 +13,6 @@ namespace MvcRestaurant.ViewModel
         public List<TableView> TablesView { get; set; }
         public Reservation Reservation { get; set; }
         public TableView TableView { get; set; }
-        //public Status Status { get; set; }
     }
     
 }

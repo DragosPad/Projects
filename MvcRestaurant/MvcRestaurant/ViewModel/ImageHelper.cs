@@ -14,7 +14,6 @@ namespace MvcRestaurant.ViewModel
             var builder = new TagBuilder("img");
             builder.MergeAttribute("src", src);
             builder.MergeAttribute("alt", altText);
-            // builder.MergeAttribute("class", imagClass);
             builder.MergeAttribute("height", height);
             builder.MergeAttributes(new RouteValueDictionary(htmlAttributes));
 

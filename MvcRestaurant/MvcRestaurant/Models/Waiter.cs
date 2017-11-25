@@ -17,6 +17,5 @@ namespace MvcRestaurant.Models
         public Status Status { get; set; }
         public IEnumerable<Status> Items { get; set; }
         public User User { get; set; }
-       // public virtual Table table { get; set; }
     }
 }

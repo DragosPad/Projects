@@ -1,11 +1,11 @@
 ﻿@model MvcRestaurant.ViewModel.TablesAndWaterView
-          @using MvcRestaurant.Models
+@using MvcRestaurant.Models
        
 
 
 @{
     ViewBag.Title = "Coordinator";
-}
+    }
 
 <h2>Coordinator</h2>
 
@@ -13,33 +13,34 @@
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>Coordinators AND Tables</legend>
-        
-
     </fieldset>
+    
     <table class ="coordinatorTable">
  <tr>
+
     <th>
-     Water Name
-     </th>
-    <th>
-      Table Coordinates
+         Waiter Name
     </th>
-     <th>
+    <th>
+         Table Coordinates
+    </th>
+    <th>
          Table Dimension
-     </th>
-     <th>
+    </th>
+    <th>
          Table Status
-     </th>
-     <th>
+    </th>
+    <th>
          Change Details
-     </th>
+    </th>
 
   </tr>
+
  @foreach (var item in Model.AllocatedTable.Keys)
 { 
     <tr>
         <td rowspan = @(Model.AllocatedTable[item].Count + 1)>
-            @item.Name
+            @item
            
         </td>
             @foreach (var tableItem in Model.AllocatedTable[item])
@@ -48,7 +49,7 @@
                    <td>
                      { @tableItem.CoordinatesTable.CoordinateX, @tableItem.CoordinatesTable.CoordinateY}
 
-                  </td>
+                   </td>
                   <td>@tableItem.DimensionTable</td>
                   <td>@tableItem.Status.ToString()</td>
                   <td> @Html.ActionLink("Change", "Change", "Waiters", new {tableId = tableItem.TableId }, null)</td>
@@ -59,17 +60,18 @@
        
 }
 </table>
+    
     <p>
-        @Html.ActionLink("AddWaiter", "AddWaiter", "Waiters")
-    </p>
-    <p>
-        @Html.ActionLink("AddTable", "AddTable", "Waiters")
+        @Html.ActionLink("Add Waiter", "AddWaiter", "Waiters")
     </p>
    
     <table>
  <tr>
     <th>
-     Water Name
+     Waiter Name
+     </th>
+     <th>
+         Status
      </th>
 
   </tr>
@@ -77,10 +79,17 @@
         {
           <tr>
               <td>
-                  @item.Name
+                  @Html.DisplayFor(model => item.Name)
+              </td>
+              <td>
+                  @Html.DisplayFor(model => item.Status)
               </td>
           </tr>
         }
         </table>
+    
+    <p>
+        @Html.ActionLink("AddTable", "AddTable", "Waiters")
+    </p>
 
 }

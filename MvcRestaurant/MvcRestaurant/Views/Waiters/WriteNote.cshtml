@@ -15,7 +15,7 @@
         @Html.HiddenFor(model => model.Table.TableId)
        
         <div>
-            @Html.TextAreaFor(model => model.Waiter.Note, new {id = "note1", @class="notes"})
+            @Html.TextAreaFor(model => model.Table.Waiter.Note, new {id = "note1", @class="notes"})
             @Html.DisplayFor(modelItem => modelItem.Waiter.WaiterId)
         
             
@@ -26,30 +26,7 @@
         <div class="editor-field">
             @Html.DropDownListFor(model => model.Table.Status, Model.Statuses)
         </div>
-        @*<div>
-            @Html.DropDownList("Status", ViewBag.EnumList as SelectList)
-        </div>*@
         </fieldset>
-    @*<table>
- <tr>
-     <th>
-         Chooese status
-     </th>
-    <th></th>
-  </tr>
-@foreach (var item in Model.Waiter.Tables)
-{ 
-    <tr>
-        <td>
-             @Html.DisplayFor(modelItem => item.DimensionTable)
-        </td>
- 
-    </tr>
- 
-}
-</table>
-
-}*@
 
            <p>
             <input type="submit" value="Save" />

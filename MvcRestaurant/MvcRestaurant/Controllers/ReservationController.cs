@@ -13,9 +13,6 @@ namespace MvcRestaurant.Controllers
     public class ReservationController : Controller
     {
         private RestaurantEntities db = new RestaurantEntities();
-        
-        //
-        // GET: /Reservation/
 
         public ActionResult Index()
         {
@@ -24,6 +21,7 @@ namespace MvcRestaurant.Controllers
             return View();
 
         }
+
         [HttpPost]
         public ActionResult Index(Reservation form)
         {
@@ -38,17 +36,19 @@ namespace MvcRestaurant.Controllers
                 else
                 {
                     form.Message = "Successful completion";
-                    
+
                 }
             }
             ViewBag.BookingFormId = new SelectList(db.BookingForms, "BookingFormId");
             return View(form);
         }
+
         public ActionResult ViewTables()
         {
             var listForm = db.Tables.ToList();
             return View(listForm);
         }
+
         public ActionResult ViewDiagram(Reservation form)
         {
             BookingTable bookT = new BookingTable();
@@ -64,8 +64,9 @@ namespace MvcRestaurant.Controllers
                     CoordinatesTable = table.CoordinatesTable,
                     TableId = table.TableId,
                     DimensionTable = table.DimensionTable,
-                    //Status = table.BookingForms.Any(b => b.ReservationDate == form.ReservationDate),
+                 
                 };
+
                 if (reservation == true)
                 {
                     tableView.Status = Status.Reserved;
@@ -79,10 +80,12 @@ namespace MvcRestaurant.Controllers
             bookT.Reservation = form;
             return View(bookT);
         }
+
         public bool AnswerTime(Reservation book)
         {
             return book.ReservationDate == DateTime.Now;
         }
+
         public ActionResult ConfirmReservation(BookingTable bConfirm, int hiddenIdTable)
         {
             if (bConfirm.Reservation != null)

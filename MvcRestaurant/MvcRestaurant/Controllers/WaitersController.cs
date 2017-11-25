@@ -15,8 +15,7 @@ namespace MvcRestaurant.Controllers
     public class WaitersController : Controller
     {
         private RestaurantEntities db = new RestaurantEntities();
-        //
-        // GET: /Waiters/
+   
         [Authorize]
         public ActionResult Index()
         {
@@ -27,14 +26,10 @@ namespace MvcRestaurant.Controllers
         public ActionResult WriteNote(int tableId)
         {
             WaiterTableViewModel viewModel = new WaiterTableViewModel();
-            //Waiter waiter = db.Waiters.Include(w => w.Tables).Single(w => w.WaiterId == waiterId);
             Table table = db.Tables.Include(c => c.Waiter).Single(c => c.TableId == tableId);
             var tables = db.Tables.Include(t => t.Waiter).ToList();
-            viewModel.AllocatedTable = tables.GroupBy(i => i.WaiterId).ToDictionary(m => m.First().Waiter, m => m.ToList());
-           // viewModel.Waiter = db.Waiters.Where(w => w.Tables.Any() == false).ToList();
-
-
-            //ViewBag.BookingFormId = new SelectList(db.Waiters, "WaiterId");
+            viewModel.AllocatedTable = tables.GroupBy(i => i.WaiterId).ToDictionary(m => m.First().Waiter != null? m.First().Waiter.Name + " " + m.First().Waiter.NumberEmployee : string.Empty, m => m.ToList());
+           
             var enumStatus = from Status e in Enum.GetValues(typeof(Status))
                              select new
                              {
@@ -47,22 +42,21 @@ namespace MvcRestaurant.Controllers
                 Note = w.Note
 
             });
-           // ViewBag.EnumList = new SelectList(enumStatus, "ID", "Name");
             viewModel.Statuses = new SelectList(enumStatus, "ID", "Name");
             viewModel.Table = table;
-            viewModel.Note = new SelectList(note);
+            viewModel.Waiter = table.Waiter;
             return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult WriteNote(Table table)
+        public ActionResult WriteNote(Table table, Waiter waiter)
         {
-            //var changeTable = db.Tables.SingleOrDefault(t => t.TableId == table.TableId);
+          
             if (ModelState.IsValid)
             {
                 var changeTable = db.Tables.SingleOrDefault(t => t.TableId == table.TableId);
                 changeTable.Status = table.Status;
-                //changeTable.Waiter.Note = table.Waiter.Note;
+                changeTable.Waiter.Note = table.Waiter.Note;
                 db.SaveChanges();
                 return RedirectToAction("Index");
 
@@ -70,12 +64,7 @@ namespace MvcRestaurant.Controllers
             }
 
             var viewModel = table;
-           // WaiterTableViewModel viewModel = new WaiterTableViewModel();
-           // Waiter waiter = db.Waiters.Include(w => w.Tables).Single(w => w.WaiterId == waiterId);
-           // viewModel.Waiter = waiter;
-           
-            //db.Waiters.Add(viewModel);
-            //db.SaveChanges();
+        
             return View(viewModel);
         }
 
@@ -101,8 +90,8 @@ namespace MvcRestaurant.Controllers
             TablesAndWaterView viewModel = new TablesAndWaterView();
 
            var tables = db.Tables.Include(t => t.Waiter).ToList();
-          
-           viewModel.AllocatedTable = tables.GroupBy(i => i.WaiterId).ToDictionary(m => m.First().Waiter, m => m.ToList());
+           var x = tables.GroupBy(t => t.WaiterId);         
+           viewModel.AllocatedTable = tables.GroupBy(i => i.WaiterId).ToDictionary(m => m.First().Waiter != null ? m.First().Waiter.Name + " " + m.First().Waiter.NumberEmployee : string.Empty, m => m.ToList());
            viewModel.WaiterList = db.Waiters.Where(w => w.Tables.Any() == false).ToList();
 
             return View(viewModel);
@@ -124,8 +113,6 @@ namespace MvcRestaurant.Controllers
             ChangeTable viewModel = new ChangeTable();
 
             var tables = db.Tables.Include(t => t.Waiter).ToList();
-
-            viewModel.AllocatedTable = tables.GroupBy(i => i.WaiterId).ToDictionary(m => m.First().Waiter, m => m.ToList());
             viewModel.WaiterList = db.Waiters.Where(w => w.Tables.Any() == false).ToList();
 
             var enumStatus = from Status e in Enum.GetValues(typeof(Status))

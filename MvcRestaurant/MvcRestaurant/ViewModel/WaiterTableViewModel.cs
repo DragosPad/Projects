@@ -12,7 +12,6 @@ namespace MvcRestaurant.ViewModel
         public Waiter Waiter { get; set; }
         public SelectList Statuses { get; set; }
         public Table Table { get; set; }
-        public SelectList Note { get; set; }
-        public Dictionary<Waiter, List<Table>> AllocatedTable { get; set; }
+        public Dictionary<string, List<Table>> AllocatedTable { get; set; }
     }
 }

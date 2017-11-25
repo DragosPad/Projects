@@ -8,14 +8,11 @@ namespace MvcRestaurant.Controllers
 {
     public class DiagramController : Controller
     {
-        //
-        // GET: /Diagram/
 
         public ActionResult Index()
         {
             return View();
         }
-
 
     }
 }
