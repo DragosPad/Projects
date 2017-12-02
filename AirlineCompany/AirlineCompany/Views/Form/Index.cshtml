@@ -6,40 +6,63 @@
     ViewBag.Title = "Index";
 }
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("Index", "Form", FormMethod.Get)) {
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>Form</legend>
-
-        <@*div class="editor-label">
-            @Html.LabelFor(model => model.DateForm)
-        </div>
-        <div class="editor-field">
-          @Html.TextBoxFor(model => model.DateForm, new {id = "ReservationDate", @class="datetime", type = "datetime"})
-            @Html.ValidationMessageFor(model => model.DateForm)
-        </div>
- 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Location)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Location)
-            @Html.ValidationMessageFor(model => model.Location)
-        </div>*@
    
-           <p>
+           @*<p>
             <input type="submit" value="Complete" />
-        </p>
+        </p>*@
          <p> @Html.ActionLink("ViewSeat", "ViewSeat")
              </p>
          <p> @Html.ActionLink("View Fligth", "StartLocation", "Form")
-</p>
+         </p>
         <p>
-            Find: @Html.TextBox("search")
-            <input type="submit" value="Search" />
+            @Html.ActionLink("View Fligths From Location", "FligthsFromLocation", "Form")
         </p>
+        <p>
+            @Html.ActionLink("View Fligths To Location", "FligthsToLocation", "Form")
+        </p>
+     
     </fieldset>
 }
+
+<table>
+    <tr>
+        <th>
+             Location
+        </th>
+        <th>
+            Destination
+        </th>
+        <th>
+            Time
+        </th>
+        <th>
+            Duration
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+       <tr>
+           <td>
+               @Html.DisplayFor(modelItem => item.Location)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.Destination)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.DepartureTime)
+           </td>
+            <td>
+               @Html.DisplayFor(modelItem => item.FlightDuration)
+           </td>
+       </tr>
+    
+    }
+</table>
 
 <script type="text/javascript">
 

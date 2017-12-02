@@ -1,0 +1,38 @@
+﻿@model IEnumerable<AirlineCompany.Models.Fligth>
+
+@{
+    ViewBag.Title = "FligthsToLocation";
+}
+
+<h2>FligthsToLocation</h2>
+
+@using (Html.BeginForm("FligthsToLocation", "Form", FormMethod.Get))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Fligths To Location</legend>
+        
+    
+       <p>
+            Find: @Html.TextBox("search", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" />
+        </p>
+    </fieldset>
+}
+<table>
+    <tr>
+        <th>
+             Destination
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+       <tr>
+           <td>
+               @Html.DisplayFor(modelItem => item.Destination)
+           </td>
+       </tr>
+    
+    }
+</table>

@@ -12,5 +12,7 @@ namespace AirlineCompany.Models
         public string Destination { get; set; }
         public int FlightDuration { get; set; }
         public string DepartureTime = DateTime.Now.ToString("mm:ss");
+       // public DateTime DateFligth { get; set; }
+        public string ArrivalTime = DateTime.Now.ToString("mm:ss");
     }
 }

@@ -7,6 +7,7 @@ using AirlineCompany.Models;
 using System.Data.Entity;
 using System.Data;
 using System.Net;
+using AirlineCompany.ViewModels;
 
 namespace AirlineCompany.Controllers
 {
@@ -16,35 +17,59 @@ namespace AirlineCompany.Controllers
         //
         // GET: /Form/
         private AirlineEntities db = new AirlineEntities();
-        public ActionResult Index(string search)
-        {
-            var searchForm = from s in db.Fligths
-                             select s;
-            if (!String.IsNullOrEmpty(search))
-            {
-                searchForm = searchForm.Where(s => s.Location.Contains(search));
-            }
-            return View(searchForm.ToList());
-        }
-        [HttpPost]
         public ActionResult Index()
         {
-            //if (ModelState.IsValid)
-            //{
-            //    //db.Forms.Add(form);
-            //    //db.SaveChanges();
-            //    form.Message = "Successful completion";
-            //    return RedirectToAction("StartLocation");
-            //}
-            
-            
-            return View();
-        
+            var fligth = db.Fligths.ToList();
+            return View(fligth);
         }
+        //[HttpPost]
+        //public ActionResult Index()
+        //{
+        //    //if (ModelState.IsValid)
+        //    //{
+        //    //    //db.Forms.Add(form);
+        //    //    //db.SaveChanges();
+        //    //    form.Message = "Successful completion";
+        //    //    return RedirectToAction("StartLocation");
+        //    //}
+            
+            
+        //    return View();
+        
+        //}
 
         public ActionResult ViewSeat()
         {
             return View();
+        }
+
+        public ActionResult FligthsFromLocation(string search)
+        {
+            //FligthsFromLocationView fligthsView = new FligthsFromLocationView();
+            ViewBag.CurrentFilter = search;
+            var searchForm = from s in db.Fligths
+                             select s;
+            if (!String.IsNullOrEmpty(search))
+            {
+                //FligthsFromLocationView fligthsView = new FligthsFromLocationView();
+                searchForm = searchForm.Where(s => s.Location.Contains(search));
+               // fligthsView.Fligths = searchForm;
+            }
+            //fligthsView.Fligths = searchForm;
+            return View(searchForm.ToList());
+        }
+
+        public ActionResult FligthsToLocation(string search)
+        {
+            ViewBag.CurrentFilter = search;
+            var searchForm = from s in db.Fligths
+                             select s;
+            if (!String.IsNullOrEmpty(search))
+            {
+                searchForm = searchForm.Where(s => s.Destination.Contains(search));
+                
+            }
+            return View(searchForm.ToList());
         }
 
         public ActionResult StartLocation()

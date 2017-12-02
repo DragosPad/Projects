@@ -24,12 +24,12 @@ namespace AirlineCompany.Models
 
             new List<Fligth>
             {
-                new Fligth { Location = "Bucharest", Destination = "Madrid", FlightDuration = 8, DepartureTime = "16:30"},
-                new Fligth { Location = "Bucharest", Destination = "Rome", FlightDuration = 6, DepartureTime = "16:30"},
-                new Fligth { Location = "Paris", Destination = "Madrid", FlightDuration = 4, DepartureTime = "16:30"},
-                new Fligth { Location = "Vienna", Destination = "Rome", FlightDuration = 2, DepartureTime = "16:30"},
-                new Fligth { Location = "Berlin", Destination = "Bucharest", FlightDuration = 5, DepartureTime = "16:30"},
-                new Fligth { Location = "Athens", Destination = "Berlin", FlightDuration = 7, DepartureTime = "16:30"},
+                new Fligth { Location = "Bucharest", Destination = "Madrid", FlightDuration = 8, DepartureTime = "16:30", ArrivalTime = "20:00"},
+                new Fligth { Location = "Bucharest", Destination = "Rome", FlightDuration = 6, DepartureTime = "03:30", ArrivalTime = "09:00"},
+                new Fligth { Location = "Paris", Destination = "Madrid", FlightDuration = 4, DepartureTime = "09:30", ArrivalTime = "20:00"},
+                new Fligth { Location = "Vienna", Destination = "Rome", FlightDuration = 2, DepartureTime = "10:30", ArrivalTime = "22:00"},
+                new Fligth { Location = "Berlin", Destination = "Bucharest", FlightDuration = 5, DepartureTime = "16:30", ArrivalTime = "23:00"},
+                new Fligth { Location = "Athens", Destination = "Berlin", FlightDuration = 7, DepartureTime = "11:30", ArrivalTime = "20:00"},
 
             }.ForEach(b => context.Fligths.Add(b));
             

@@ -108,6 +108,7 @@
     <Compile Include="Models\Plane.cs" />
     <Compile Include="Models\SampleData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\FligthsFromLocationView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\MvcAirline.sdf" />
@@ -204,6 +205,8 @@
     <Content Include="Views\Form\Index.cshtml" />
     <Content Include="Views\Form\ViewSeat.cshtml" />
     <Content Include="Views\Form\StartLocation.cshtml" />
+    <Content Include="Views\Form\FligthsFromLocation.cshtml" />
+    <Content Include="Views\Form\FligthsToLocation.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
