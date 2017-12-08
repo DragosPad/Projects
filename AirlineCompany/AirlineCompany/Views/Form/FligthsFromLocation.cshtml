@@ -27,6 +27,15 @@
         <th>
             Destination
         </th>
+        <th>
+            Departure Time
+        </th>
+        <th>
+             Flight Duration 
+        </th>
+        <th>
+            Arrival Time
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -37,6 +46,15 @@
            </td>
            <td>
                @Html.DisplayFor(modelItem => item.Destination)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.DepartureTime)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.FlightDuration)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.ArrivalTime)
            </td>
        </tr>
     

@@ -31,26 +31,29 @@ namespace MvcRestaurant.Models
             Waiter coordinator = new Waiter() 
             {
               Name = "Bontea",
-              NumberEmployee = 3
+              NumberEmployee = 3,
+              IsCoordinator = false,
+              User = new User() { UserName = "Bontea@yahoo.com", passWord = "000" }
             };
             new List<Waiter> 
             
             {
                 new Waiter { Name = "Jack", NumberEmployee = 5, Coordinator = coordinator,
                 
-                Tables = new List<Table>() {x[0], x[1]}},
+                Tables = new List<Table>() {x[0], x[1]}, User = new User(){UserName = "dragospaduraru89@yahoo.com", passWord = "1"}},
                     
                 new Waiter { Name = "Jerry", NumberEmployee = 1, Coordinator = coordinator,
                  Tables = new List<Table>() { x[2]
-                 }},
+                 },User = new User(){UserName = "dragos@yahoo.com", passWord = "222"}},
                 new Waiter { Name = "Andre", NumberEmployee = 3, Coordinator = coordinator,
                  Tables = new List<Table>() { x[3]
-                 }},
+                 },User = new User(){UserName = "Andre@yahoo.com", passWord = "333"}},
                 new Waiter { Name = "Anton", NumberEmployee = 8, Coordinator = coordinator,
                 Tables = new List<Table>() { x[4], x[5], x[6]
-                     }},
-                     new Waiter {Name = "Florin", NumberEmployee = 4, Coordinator = coordinator},
-                     new Waiter {Name = "Jack", NumberEmployee  = 2, Coordinator = coordinator}
+                     },User = new User(){UserName = "Anton@yahoo.com", passWord = "444"}},
+                     new Waiter {Name = "Hadean", NumberEmployee = 4, Coordinator = coordinator, User = new User(){UserName = "Hadean@yahoo.com", passWord = "555"}},
+                     new Waiter {Name = "Patricia", NumberEmployee  = 2, Coordinator = coordinator, User = new User(){UserName = "Patricia@yahoo.com", passWord = "666"}},
+                      new Waiter {Name = "Florin", NumberEmployee  = 2, Coordinator = coordinator, User = new User(){UserName = "Florin@yahoo.com", passWord = "777"}}
             
             }.ForEach(b => context.Waiters.Add(b));
 

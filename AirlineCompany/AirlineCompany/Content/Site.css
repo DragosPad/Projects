@@ -367,7 +367,7 @@ background-image:url("images/seat1.png");
 margin-top:10px;
 }
 #seatDescription li{
-verticle-align:middle;    
+vertical-align:middle;    
 list-style: none outside none;
 padding-left:35px;
 height:35px;
@@ -379,3 +379,5 @@ float:left;
 border: 1px solid #8A8575;
 width: 300px;
 }
+
+

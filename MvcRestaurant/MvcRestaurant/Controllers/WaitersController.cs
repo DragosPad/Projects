@@ -8,10 +8,13 @@ using System.Data.Entity;
 using MvcRestaurant.ViewModel;
 using System.Net;
 using System.Data;
+using MvcRestaurant.Filters;
 
 
 namespace MvcRestaurant.Controllers
 {
+    
+    [Authorization(Roles = "Waiter")]
     public class WaitersController : Controller
     {
         private RestaurantEntities db = new RestaurantEntities();
@@ -85,6 +88,7 @@ namespace MvcRestaurant.Controllers
           return View(viewModel);
         }
 
+        [Authorization(Roles = "Coordinator")]
         public ActionResult Coordinator()
         {
             TablesAndWaterView viewModel = new TablesAndWaterView();
