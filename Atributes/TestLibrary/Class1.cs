@@ -15,7 +15,6 @@ namespace TestLibrary
 
             var assembly = Assembly.GetEntryAssembly();
             var types = assembly.GetTypes();
-            object[] methodInvoke = new object[3];
             foreach (var type in types)
             {
 
@@ -27,7 +26,7 @@ namespace TestLibrary
                    if (attribute != null)
                    {
                       var instance = Activator.CreateInstance(type);
-                      method.Invoke(instance, methodInvoke);
+                      method.Invoke(instance, attribute.Parameters);
                    }
                 }
             }

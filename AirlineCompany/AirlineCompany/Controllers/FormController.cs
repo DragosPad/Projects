@@ -13,7 +13,7 @@ namespace AirlineCompany.Controllers
 {
     public class FormController : Controller
     {
-        private Form fr = new Form();
+        
         //
         // GET: /Form/
         private AirlineEntities db = new AirlineEntities();
@@ -69,6 +69,11 @@ namespace AirlineCompany.Controllers
                 searchForm = searchForm.Where(s => s.Destination.Contains(search));
                 
             }
+            //if (!String.IsNullOrEmpty(search))
+            //{
+            //    searchForm = searchForm.Where(d => d.DateFlight.Contains(search));
+
+            //}
             return View(searchForm.ToList());
         }
 

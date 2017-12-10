@@ -1,4 +1,9 @@
-﻿@{
+﻿@using AirlineCompany.Models
+@using AirlineCompany.ViewModels
+
+@model IEnumerable<AirlineCompany.Models.Plane>
+
+@{
     ViewBag.Title = "ViewSeat";
 }
 
@@ -9,33 +14,41 @@
 			<div class="front">Seats</div>					
 		</div>
 			<div id="legend">Legend</div>
+    
 		</div>
- 
+ <div>
+     <table>
+         @for (int i = 0; i < 6; i++ )
+         {
+             
+             for (int j = 0; j < 7; j++ )
+             {
+               
+                     @Html.Image("/Content/images/seat1.gif", "alt", "100", new { @class = "imag" })
+               
+             }
+                
+         }
+     </table>
+ </div>
 
 <script>
-    $(document).ready(function () {
-        
-        var seats = $('#seat-map').seatCharts({
-            map: [  
-                'aaaaaaaaaa',
-                'aaaaaaaaaa',
-                '__________',
-                'aaaaaaaa__',
-                'aaaaaaaaaa',
-                'aaaaaaaaaa',
-                'aaaaaaaaaa',
-                'aaaaaaaaaa',
-                'aaaaaaaaaa',
-                'aa__aa__aa'
-            ],
-            naming: {
-                top: false,
-                getLabel: function (character, row, column) {
-                    return column;
-                }
-            },
-                      
-        });
+    $(".imag").on('click', function () {
+
+        if ($(this).attr("src").toString().indexOf('seat1.gif') != -1) {
+
+
+            this.src = this.src.replace("seat1.gif", "seat2.gif");
+
+        }
+
+        else {
+
+            this.src = this.src.replace("seat2.gif", "seat1.gif");
+           
+
+
+        }
 
     });
 </script>

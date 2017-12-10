@@ -11,7 +11,7 @@ namespace Atributes
     {
         public string Name { get; set; }
         
-        [Example("AAA", "BB", "CC")]
+        [Example("AAA")]
         public void IncreaseAge(string message)
         {
             System.Console.WriteLine("Another year has passed");

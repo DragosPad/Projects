@@ -103,12 +103,12 @@
     </Compile>
     <Compile Include="Models\AirlineEntities.cs" />
     <Compile Include="Models\Fligth.cs" />
-    <Compile Include="Models\Form.cs" />
-    <Compile Include="Models\ListForm.cs" />
+    <Compile Include="Models\InformationPassenger.cs" />
     <Compile Include="Models\Plane.cs" />
     <Compile Include="Models\SampleData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\FligthsFromLocationView.cs" />
+    <Compile Include="ViewModels\ImageHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\MvcAirline.sdf" />

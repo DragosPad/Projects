@@ -32,7 +32,7 @@ namespace MvcRestaurant.Models
             {
               Name = "Bontea",
               NumberEmployee = 3,
-              IsCoordinator = false,
+              IsCoordinator = true,
               User = new User() { UserName = "Bontea@yahoo.com", passWord = "000" }
             };
             new List<Waiter> 

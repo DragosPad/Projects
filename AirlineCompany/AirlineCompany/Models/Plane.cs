@@ -10,5 +10,6 @@ namespace AirlineCompany.Models
         public int PlaneId { get; set; }
         public int NumberRow { get; set; }
         public int NumberPlaceRow { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

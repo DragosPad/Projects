@@ -13,5 +13,6 @@ namespace AirlineCompany.Models
         public int FlightDuration { get; set; }
         public string DepartureTime { get; set; }
         public string ArrivalTime { get; set; }
+        public DateTime DateFlight { get; set; }
     }
 }
