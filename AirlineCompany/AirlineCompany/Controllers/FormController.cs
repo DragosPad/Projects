@@ -43,37 +43,45 @@ namespace AirlineCompany.Controllers
             return View();
         }
 
-        public ActionResult FligthsFromLocation(string search)
+        [HttpPost]
+        public ActionResult ViewSeat(InformationPassenger infoPassenger)
+        {
+            if (ModelState.IsValid)
+            {
+                db.InformationPassenger.Add(infoPassenger);
+                db.SaveChanges();
+                return RedirectToAction("ViewSeat");
+            }
+            return View();
+        }
+
+        public ActionResult FligthsFromLocation(string search, DateTime? date)
         {
             //FligthsFromLocationView fligthsView = new FligthsFromLocationView();
             ViewBag.CurrentFilter = search;
             var searchForm = from s in db.Fligths
                              select s;
-            if (!String.IsNullOrEmpty(search))
+            if (!String.IsNullOrEmpty(search) && date.HasValue)
             {
                 //FligthsFromLocationView fligthsView = new FligthsFromLocationView();
-                searchForm = searchForm.Where(s => s.Location.Contains(search));
+                searchForm = searchForm.Where(s => s.Location.Contains(search) && s.DateFlight == date);
                // fligthsView.Fligths = searchForm;
             }
             //fligthsView.Fligths = searchForm;
             return View(searchForm.ToList());
         }
 
-        public ActionResult FligthsToLocation(string search)
+        public ActionResult FligthsToLocation(string search, DateTime? date)
         {
             ViewBag.CurrentFilter = search;
             var searchForm = from s in db.Fligths
                              select s;
-            if (!String.IsNullOrEmpty(search))
+            if (!String.IsNullOrEmpty(search) && date.HasValue)
             {
-                searchForm = searchForm.Where(s => s.Destination.Contains(search));
+                searchForm = searchForm.Where(s => s.Location.Contains(search) && s.DateFlight == date);
                 
             }
-            //if (!String.IsNullOrEmpty(search))
-            //{
-            //    searchForm = searchForm.Where(d => d.DateFlight.Contains(search));
-
-            //}
+           
             return View(searchForm.ToList());
         }
 

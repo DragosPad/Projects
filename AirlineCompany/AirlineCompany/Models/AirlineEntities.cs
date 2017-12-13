@@ -10,6 +10,7 @@ namespace AirlineCompany.Models
     {
         public DbSet<Fligth> Fligths { get; set; }
         public DbSet<Plane> Planes { get; set; }
+        public DbSet<InformationPassenger> InformationPassenger { get; set; }
       
     }
 }

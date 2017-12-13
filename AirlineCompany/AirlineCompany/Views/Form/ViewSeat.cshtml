@@ -1,7 +1,7 @@
 ﻿@using AirlineCompany.Models
 @using AirlineCompany.ViewModels
 
-@model IEnumerable<AirlineCompany.Models.Plane>
+@model AirlineCompany.Models.InformationPassenger
 
 @{
     ViewBag.Title = "ViewSeat";
@@ -20,17 +20,61 @@
      <table>
          @for (int i = 0; i < 6; i++ )
          {
+             <tr>
              
-             for (int j = 0; j < 7; j++ )
+             @for (int j = 0; j < 7; j++ )
              {
+                 <td class="myCell">
+                      <div class ="Img">  
                
                      @Html.Image("/Content/images/seat1.gif", "alt", "100", new { @class = "imag" })
-               
+                          </div>
+               </td>
              }
+                 </tr>
                 
          }
      </table>
+
+     @using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Information Passenger</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NamePassenger)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NamePassenger)
+            @Html.ValidationMessageFor(model => model.NamePassenger)
+
+        </div>
+
+         <div class="editor-label">
+            @Html.LabelFor(model => model.BirthdatePassenger)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.BirthdatePassenger , new { @class="datetime", type = "datetime"})
+            @Html.ValidationMessageFor(model => model.BirthdatePassenger)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CNP)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CNP)
+            @Html.ValidationMessageFor(model => model.CNP)
+        </div>
+   
+    </fieldset>
+         
+         <p>
+            <input type="submit" value="Confirm Rezervation Seat" />
+       </p>
+     }
+
  </div>
+
+
 
 <script>
     $(".imag").on('click', function () {
@@ -52,3 +96,16 @@
 
     });
 </script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('.datetime').datepicker({
+            dateFormat: "dd/M/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0"
+        });
+
+    });
+</script>  

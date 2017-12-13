@@ -380,4 +380,18 @@ border: 1px solid #8A8575;
 width: 300px;
 }
 
+.myCell {
+    width: 100px;
+    height: 100px;
+    padding-left: initial;
+    text-align: center;
+    font-size: 30px;
+}
+.Img {
 
+  top: 50%;
+  left: 50%;
+  margin-top: 20px;
+  margin-left: 0px;
+  text-align: center;
+}

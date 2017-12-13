@@ -25,6 +25,7 @@ namespace MvcRestaurant.Controllers
         [HttpPost]
         public ActionResult Index(Reservation form)
         {
+            form = TempData["ReservationData"] as Reservation;
             if (ModelState.IsValid)
             {
                 bool tableExist = db.Tables.Any(table => table.Status == Status.Free && table.BookingForms.All(a => a.ReservationDate != form.ReservationDate));
@@ -78,7 +79,9 @@ namespace MvcRestaurant.Controllers
                 bookT.TablesView.Add(tableView);
             }
             bookT.Reservation = form;
-            return View(bookT);
+            TempData["ReservationData"] = form;
+            return RedirectToAction("Index");
+            //return View(bookT);
         }
 
         public bool AnswerTime(Reservation book)

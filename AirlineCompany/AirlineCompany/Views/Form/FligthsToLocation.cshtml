@@ -18,7 +18,7 @@
             <input type="submit" value="Search" />
         </p>
         <p>
-            View the flights this day : @Html.TextBox("search", ViewBag.CurrentFilter as string)
+            View the flights this day : @Html.TextBox("date", ViewBag.CurrentFilter as string, new { @class="datetime", type = "datetime"})
             <input type="submit" value="Search" />
         </p>
     </fieldset>
@@ -40,9 +40,13 @@
         <th>
             Arrival Time
         </th>
+         <th>
+            Date Fligth
+        </th>
         <th>
             View Seats
         </th>
+       
     </tr>
 
     @foreach (var item in Model)
@@ -64,6 +68,9 @@
                @Html.DisplayFor(modelItem => item.ArrivalTime)
            </td>
            <td>
+               @Html.DisplayFor(modelItem => item.DateFlight)
+           </td>
+           <td>
                @Html.ActionLink("ViewSeat", "ViewSeat", "Form")
              
            </td>
@@ -71,3 +78,15 @@
     
     }
 </table>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('.datetime').datepicker({
+            dateFormat: "dd/M/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0"
+        });
+
+    });
+</script>  
