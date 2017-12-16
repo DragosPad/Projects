@@ -38,20 +38,22 @@ namespace AirlineCompany.Controllers
         
         //}
 
-        public ActionResult ViewSeat()
+        public ActionResult ViewSeat(InformationPassenger InfoPassenger)
         {
-            return View();
+            SeatsModelView seatView = new SeatsModelView();
+            seatView.Planes = new List<Plane>();
+            return View(seatView);
         }
 
         [HttpPost]
-        public ActionResult ViewSeat(InformationPassenger infoPassenger)
+        public ActionResult ViewSeat()
         {
-            if (ModelState.IsValid)
-            {
-                db.InformationPassenger.Add(infoPassenger);
-                db.SaveChanges();
-                return RedirectToAction("ViewSeat");
-            }
+            //if (ModelState.IsValid)
+            //{
+            //    db.InformationPassenger.Add(infoPassenger);
+            //    db.SaveChanges();
+            //    return RedirectToAction("ViewSeat");
+            //}
             return View();
         }
 

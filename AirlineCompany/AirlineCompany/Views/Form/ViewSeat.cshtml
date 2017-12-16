@@ -1,7 +1,7 @@
 ﻿@using AirlineCompany.Models
 @using AirlineCompany.ViewModels
 
-@model AirlineCompany.Models.InformationPassenger
+@model AirlineCompany.ViewModels.SeatsModelView
 
 @{
     ViewBag.Title = "ViewSeat";
@@ -18,11 +18,14 @@
 		</div>
  <div>
      <table>
-         @for (int i = 0; i < 6; i++ )
+         @foreach(var item in Model.Planes)
+         {
+             
+          for (int i = 0; i < item.NumberRow; i++ )
          {
              <tr>
              
-             @for (int j = 0; j < 7; j++ )
+             @for (int j = 0; j < item.NumberPlaceRow; j++ )
              {
                  <td class="myCell">
                       <div class ="Img">  
@@ -34,7 +37,24 @@
                  </tr>
                 
          }
+         }
      </table>
+     <div id="seatDescription">
+         <div>
+        <img src= "@Url.Content("~/Content/images/seat1.gif")" />
+            <span>Available Table</span>
+            </div>
+
+          <div>
+        <img src= "@Url.Content("~/Content/images/seat2.gif")" />
+              <span>Reserved Table</span>
+              </div>
+
+                <div>
+                 <img src="@Url.Content("~/Content/images/seat3.gif")" /> 
+                    <span>Occupied Table</span>
+                    </div>
+    </div>
 
      @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
@@ -42,27 +62,27 @@
         <legend>Information Passenger</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.NamePassenger)
+            @Html.LabelFor(model => model.InfoPass.NamePassenger)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.NamePassenger)
-            @Html.ValidationMessageFor(model => model.NamePassenger)
+            @Html.EditorFor(model => model.InfoPass.NamePassenger)
+            @Html.ValidationMessageFor(model => model.InfoPass.NamePassenger)
 
         </div>
 
          <div class="editor-label">
-            @Html.LabelFor(model => model.BirthdatePassenger)
+            @Html.LabelFor(model => model.InfoPass.BirthdatePassenger)
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.BirthdatePassenger , new { @class="datetime", type = "datetime"})
-            @Html.ValidationMessageFor(model => model.BirthdatePassenger)
+            @Html.TextBoxFor(model => model.InfoPass.BirthdatePassenger , new { @class="datetime", type = "datetime"})
+            @Html.ValidationMessageFor(model => model.InfoPass.BirthdatePassenger)
         </div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.CNP)
+            @Html.LabelFor(model => model.InfoPass.CNP)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.CNP)
-            @Html.ValidationMessageFor(model => model.CNP)
+            @Html.EditorFor(model => model.InfoPass.CNP)
+            @Html.ValidationMessageFor(model => model.InfoPass.CNP)
         </div>
    
     </fieldset>
