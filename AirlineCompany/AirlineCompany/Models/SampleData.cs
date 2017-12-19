@@ -26,17 +26,17 @@ namespace AirlineCompany.Models
             new List<Fligth>
             {
                 new Fligth { Location = "Bucharest", Destination = "Madrid", FlightDuration = 8, DepartureTime = "16:30", ArrivalTime = "20:00", DateFlight = new DateTime(2017, 12, 12), 
-                    Plane = new List<Plane>() {p[0]}},
+                    Planes = new List<Plane>() {p[0]}},
                 new Fligth { Location = "Bucharest", Destination = "Rome", FlightDuration = 6, DepartureTime = "03:30", ArrivalTime = "09:00", DateFlight = new DateTime(2017, 12, 12), 
-                Plane = new List<Plane>() {p[1]}},
+                Planes = new List<Plane>() {p[1]}},
                 new Fligth { Location = "Paris", Destination = "Madrid", FlightDuration = 4, DepartureTime = "09:30", ArrivalTime = "20:00", DateFlight = new DateTime(2017, 12, 10), 
-                Plane = new List<Plane>() {p[2]}},
+                Planes = new List<Plane>() {p[2]}},
                 new Fligth { Location = "Vienna", Destination = "Rome", FlightDuration = 2, DepartureTime = "10:30", ArrivalTime = "22:00", DateFlight = new DateTime(2017, 12, 12), 
-                Plane = new List<Plane>() {p[3]}},
+                Planes = new List<Plane>() {p[3]}},
                 new Fligth { Location = "Berlin", Destination = "Bucharest", FlightDuration = 5, DepartureTime = "16:30", ArrivalTime = "23:00", DateFlight = new DateTime(2017, 12, 10), 
-                Plane = new List<Plane>() {p[4]}},
+                Planes = new List<Plane>() {p[4]}},
                 new Fligth { Location = "Athens", Destination = "Berlin", FlightDuration = 7, DepartureTime = "11:30", ArrivalTime = "20:00", DateFlight = new DateTime(2017, 12, 12),
-                Plane = new List<Plane>() {p[5]}},
+                Planes = new List<Plane>() {p[5]}},
 
             }.ForEach(b => context.Fligths.Add(b));
             

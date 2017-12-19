@@ -13,5 +13,6 @@ namespace AirlineCompany.Models
         public int NumberRow { get; set; }
         public int NumberPlaceRow { get; set; }
         public string ImageUrl { get; set; }
+        public virtual Fligth Fligth { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿@using AirlineCompany.Models
 @using AirlineCompany.ViewModels
 
+
 @model AirlineCompany.ViewModels.SeatsModelView
 
 @{
@@ -17,28 +18,50 @@
     
 		</div>
  <div>
-     <table>
-         @foreach(var item in Model.Planes)
-         {
+  <table>
+      
+      @foreach (var item in Model.Fligth.Planes)
+      {
+        
+          for (int i = 0; i < item.NumberRow; i++)
+          {
              
-          for (int i = 0; i < item.NumberRow; i++ )
+             for (int j = 0; j < item.NumberPlaceRow; j++)
+             {
+               
+                 @Html.Image("/Content/images/seat1.gif", "alt", "100", new { @class = "imag" })
+                          
+                              
+             }
+
+          }
+           
+      
+      }
+        
+         @*    
+           @for (int i = 1; i < Model.Planes.NumberRow; i++ )
          {
              <tr>
              
-             @for (int j = 0; j < item.NumberPlaceRow; j++ )
+             @for (int j = 1; j < Model.Planes.NumberPlaceRow; j++ )
              {
                  <td class="myCell">
+                    
                       <div class ="Img">  
                
                      @Html.Image("/Content/images/seat1.gif", "alt", "100", new { @class = "imag" })
-                          </div>
+                          
+                      </div>
+                     
                </td>
              }
                  </tr>
-                
-         }
-         }
-     </table>
+          }  
+          
+         *@
+      </table>
+         
      <div id="seatDescription">
          <div>
         <img src= "@Url.Content("~/Content/images/seat1.gif")" />
@@ -56,35 +79,38 @@
                     </div>
     </div>
 
-     @using (Html.BeginForm()) {
+     @using (Html.BeginForm())
+     {
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>Information Passenger</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.InfoPass.NamePassenger)
+            @Html.LabelFor(model => model.NamePassenger)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.InfoPass.NamePassenger)
-            @Html.ValidationMessageFor(model => model.InfoPass.NamePassenger)
+            @Html.EditorFor(model => model.NamePassenger)
+            @Html.ValidationMessageFor(model => model.NamePassenger)
 
         </div>
 
          <div class="editor-label">
-            @Html.LabelFor(model => model.InfoPass.BirthdatePassenger)
+            @Html.LabelFor(model => model.BirthdatePassenger)
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.InfoPass.BirthdatePassenger , new { @class="datetime", type = "datetime"})
-            @Html.ValidationMessageFor(model => model.InfoPass.BirthdatePassenger)
+            @Html.TextBoxFor(model => model.BirthdatePassenger, new { @class = "datetime", type = "datetime" })
+            @Html.ValidationMessageFor(model => model.BirthdatePassenger)
         </div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.InfoPass.CNP)
+            @Html.LabelFor(model => model.CNP)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.InfoPass.CNP)
-            @Html.ValidationMessageFor(model => model.InfoPass.CNP)
+            @Html.EditorFor(model => model.CNP)
+            @Html.ValidationMessageFor(model => model.CNP)
         </div>
-   
+   <div>
+        @Html.TextBox("hiddenIdSeat","", new {@class = "SelectSeat" })
+   </div>
     </fieldset>
          
          <p>
@@ -97,6 +123,24 @@
 
 
 <script>
+    var seat = $('.SelectSeat');
+    var lastSeat;
+    $(".imag").on('click', function () {
+
+        if (lastSeat != null) {
+
+            if (lastTable.attr("src") == "/Content/images/seat1.gif") {
+                lastTable.attr("src", "/Content/images/seat2.gif")
+            }
+            else {
+                lastTable.attr("src", "/Content/images/seat1.gif")
+            }
+
+        }
+
+
+    });
+
     $(".imag").on('click', function () {
 
         if ($(this).attr("src").toString().indexOf('seat1.gif') != -1) {

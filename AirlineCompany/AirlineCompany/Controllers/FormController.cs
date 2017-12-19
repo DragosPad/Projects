@@ -19,7 +19,7 @@ namespace AirlineCompany.Controllers
         private AirlineEntities db = new AirlineEntities();
         public ActionResult Index()
         {
-            var fligth = db.Fligths.ToList();
+            var fligth = db.Fligths.Include( f => f.Planes);
             return View(fligth);
         }
         //[HttpPost]
@@ -38,22 +38,35 @@ namespace AirlineCompany.Controllers
         
         //}
 
-        public ActionResult ViewSeat(InformationPassenger InfoPassenger)
+        public ActionResult ViewSeat(int fligthId)
         {
             SeatsModelView seatView = new SeatsModelView();
-            seatView.Planes = new List<Plane>();
+            Fligth fligth = db.Fligths.Include(f => f.Planes).Single(f => f.FligthId == fligthId);
+            InformationPassenger infoPass = new InformationPassenger();
+            //seatView.Planes = new Plane();
+            seatView.Fligth = fligth;
+            seatView.NamePassenger = infoPass.NamePassenger;
+            seatView.BirthdatePassenger = infoPass.BirthdatePassenger;
+            seatView.CNP = infoPass.CNP;
+           
+            
             return View(seatView);
         }
 
         [HttpPost]
-        public ActionResult ViewSeat()
+        public ActionResult ViewSeat(SeatsModelView seatView, int? hiddenIdSeat)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    db.InformationPassenger.Add(infoPassenger);
-            //    db.SaveChanges();
-            //    return RedirectToAction("ViewSeat");
-            //}
+            InformationPassenger infoPassenger = new InformationPassenger();
+            if (ModelState.IsValid)
+            {
+               // var info = db.InformationPassenger.SingleOrDefault(i => i.InformationPassengerId == infoPassenger.InformationPassengerId);
+                infoPassenger.NamePassenger = seatView.NamePassenger;
+                infoPassenger.BirthdatePassenger = seatView.BirthdatePassenger;
+                infoPassenger.CNP = seatView.CNP;
+                db.InformationPassenger.Add(infoPassenger);
+                db.SaveChanges();
+                return RedirectToAction("ViewSeat");
+            }
             return View();
         }
 

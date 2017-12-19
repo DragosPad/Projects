@@ -71,7 +71,7 @@
                @Html.DisplayFor(modelItem => item.DateFlight)
            </td>
            <td>
-               @Html.ActionLink("ViewSeat", "ViewSeat", "Form")
+              @Html.ActionLink("ViewSeat", "ViewSeat", "Form", new { fligthId = item.FligthId}, null)
              
            </td>
        </tr>
