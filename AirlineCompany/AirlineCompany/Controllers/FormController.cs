@@ -54,7 +54,7 @@ namespace AirlineCompany.Controllers
         }
 
         [HttpPost]
-        public ActionResult ViewSeat(SeatsModelView seatView, int? hiddenIdSeat)
+        public ActionResult ViewSeat(SeatsModelView seatView, int hiddenIdSeat, int hiddenIdSeatColumn)
         {
             InformationPassenger infoPassenger = new InformationPassenger();
             if (ModelState.IsValid)

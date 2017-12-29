@@ -12,13 +12,13 @@ namespace AirlineCompany.Models
         {
            var p = new List<Plane>
             {
-                new Plane { NumberRow = 10, NumberPlaceRow = 4 },
-                new Plane { NumberRow = 24, NumberPlaceRow = 8 },
-                new Plane { NumberRow = 20, NumberPlaceRow = 6 },
+                new Plane { NumberRow = 2, NumberPlaceRow = 4 },
+                new Plane { NumberRow = 4, NumberPlaceRow = 8 },
+                new Plane { NumberRow = 7, NumberPlaceRow = 6 },
                 new Plane { NumberRow = 10, NumberPlaceRow = 10 },
-                new Plane { NumberRow = 15, NumberPlaceRow = 2 },
-                new Plane { NumberRow = 17, NumberPlaceRow = 4 },
-                new Plane { NumberRow = 12, NumberPlaceRow = 8 }
+                new Plane { NumberRow = 5, NumberPlaceRow = 2 },
+                new Plane { NumberRow = 7, NumberPlaceRow = 4 },
+                new Plane { NumberRow = 2, NumberPlaceRow = 8 }
 
             };
             p.ForEach(a => context.Planes.Add(a));

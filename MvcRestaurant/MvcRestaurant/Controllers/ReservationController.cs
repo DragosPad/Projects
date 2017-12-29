@@ -37,7 +37,7 @@ namespace MvcRestaurant.Controllers
                 else
                 {
                     TempData["ReservationData"] = form;
-                    RedirectToAction("ViewDiagram");
+                    return RedirectToAction("ViewDiagram");
                    // form.Message = "Successful completion";
 
                 }
@@ -52,9 +52,11 @@ namespace MvcRestaurant.Controllers
             return View(listForm);
         }
 
-        public ActionResult ViewDiagram(Reservation form)
+        public ActionResult ViewDiagram()
         {
-           form = TempData["ReservationData"] as Reservation;
+           // Reservation form = new Reservation();
+          var form = TempData["ReservationData"] as Reservation;
+           
             BookingTable bookT = new BookingTable();
             bookT.TablesView = new List<TableView>();
             var myTables = db.Tables.Include(b => b.BookingForms).ToList();

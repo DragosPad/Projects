@@ -25,14 +25,16 @@
         
           for (int i = 0; i < item.NumberRow; i++)
           {
+              <div>
              
-             for (int j = 0; j < item.NumberPlaceRow; j++)
+             @for (int j = 0; j < item.NumberPlaceRow; j++)
              {
                
-                 @Html.Image("/Content/images/seat1.gif", "alt", "100", new { @class = "imag" })
+                 @Html.Image("/Content/images/seat1.gif", "alt", "100", new { @class = "imag", data_x = i, data_y = j})
                           
                               
              }
+              </div>
 
           }
            
@@ -111,6 +113,9 @@
    <div>
         @Html.TextBox("hiddenIdSeat","", new {@class = "SelectSeat" })
    </div>
+        <div>
+        @Html.TextBox("hiddenIdSeatColumn","", new {@class = "SelectSeatColumn" })
+   </div>
     </fieldset>
          
          <p>
@@ -124,6 +129,7 @@
 
 <script>
     var seat = $('.SelectSeat');
+    var seat2 = $('.SelectSeatColumn');
     var lastSeat;
     $(".imag").on('click', function () {
 
@@ -142,6 +148,9 @@
     });
 
     $(".imag").on('click', function () {
+        var row = seat.val($(this).attr("data_x"));
+        var column = seat2.val($(this).attr("data_y"));
+        lastSeat = $(this);
 
         if ($(this).attr("src").toString().indexOf('seat1.gif') != -1) {
 
@@ -153,7 +162,7 @@
         else {
 
             this.src = this.src.replace("seat2.gif", "seat1.gif");
-           
+            seat.val("");
 
 
         }
