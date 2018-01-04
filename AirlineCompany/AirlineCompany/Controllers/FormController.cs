@@ -57,15 +57,22 @@ namespace AirlineCompany.Controllers
         public ActionResult ViewSeat(SeatsModelView seatView, int hiddenIdSeat, int hiddenIdSeatColumn)
         {
             InformationPassenger infoPassenger = new InformationPassenger();
+            Plane infoPlane = new Plane();
+            //Fligth fligth = new Fligth();
             if (ModelState.IsValid)
             {
-               // var info = db.InformationPassenger.SingleOrDefault(i => i.InformationPassengerId == infoPassenger.InformationPassengerId);
+                Fligth fligth = seatView.Fligth;                
                 infoPassenger.NamePassenger = seatView.NamePassenger;
                 infoPassenger.BirthdatePassenger = seatView.BirthdatePassenger;
                 infoPassenger.CNP = seatView.CNP;
+
+                var myDetailsInfo = seatView.Fligth;
+              
+                
+                
                 db.InformationPassenger.Add(infoPassenger);
                 db.SaveChanges();
-                return RedirectToAction("ViewSeat");
+                return RedirectToAction("Confirm");
             }
             return View();
         }
@@ -106,6 +113,12 @@ namespace AirlineCompany.Controllers
             var fligth = db.Fligths.ToList();
 
             return View(fligth);
+        }
+
+        public ActionResult Confirm()
+        {
+
+            return View();
         }
 
     }

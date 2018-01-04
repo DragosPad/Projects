@@ -14,10 +14,12 @@ namespace AirlineCompany.ViewModels
         public string NamePassenger { get; set; }
         public DateTime BirthdatePassenger { get; set; }
         public long CNP { get; set; }
+        public int PlaceRow { get; set; }
+        public int PlaceColumn { get; set; }
 
         //public int NumberRow { get; set; }
         //public int NumberPlaceRow { get; set; }
 
-        public Plane Planes { get; set; }
+       // public Plane Planes { get; set; }
     }
 }

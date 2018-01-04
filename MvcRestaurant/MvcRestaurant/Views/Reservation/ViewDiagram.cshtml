@@ -3,11 +3,6 @@
 
 @model MvcRestaurant.ViewModel.BookingTable
 
-
-@*@using MvcRestaurant.Models
-
-@model IEnumerable<MvcRestaurant.Models.Table>
-*@
 @{
     ViewBag.Title = "ViewDiagram";
 }
@@ -59,15 +54,15 @@
             <span>Available Table</span>
             </div>
 
-          <div>
+              <div>
         <img src= "@Url.Content("~/Content/images/imagine2.png")" />
-              <span>Reserved Table</span>
+            <span>Reserved Table</span>
               </div>
 
-                <div>
-                 <img src="@Url.Content("~/Content/images/imagine3.png")" /> 
-                    <span>Occupied Table</span>
-                    </div>
+              <div>
+        <img src="@Url.Content("~/Content/images/imagine3.png")" /> 
+            <span>Occupied Table</span>
+            </div>
     </div>
     </div>
  

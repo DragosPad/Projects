@@ -1,6 +1,4 @@
-﻿@*@using MvcRestaurant.ViewModel*@
-@*@using MvcRestaurant.Models*@
-
+﻿
 @model MvcRestaurant.ViewModel.WaiterTableViewModel
           @using MvcRestaurant.Models
 
@@ -45,16 +43,7 @@
         </td>
         <td>
             @Html.ActionLink("Select status and write note", "WriteNote", "Waiters", new { tableId = item.TableId }, null)
-   
-           @* @if (item.Status == Status.Free)
-            {
-                 @Html.ActionLink("Select status and write note", "WriteNote", "Waiters", new { tableId = item.TableId }, null)
-               
-            }
-            else
-            {
-             @Html.ActionLink("Select status and write note", "WriteNote", "Waiters", null, new { tableId = item.TableId, @class = "Not-active" })
-            }*@
+  
         </td>
  
     </tr>

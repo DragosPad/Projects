@@ -181,6 +181,7 @@
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\SeatControl.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -208,6 +209,7 @@
     <Content Include="Views\Form\StartLocation.cshtml" />
     <Content Include="Views\Form\FligthsFromLocation.cshtml" />
     <Content Include="Views\Form\FligthsToLocation.cshtml" />
+    <Content Include="Views\Form\Confirm.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

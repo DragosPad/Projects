@@ -25,7 +25,6 @@ namespace MvcRestaurant.Controllers
         [HttpPost]
         public ActionResult Index(Reservation form)
         {
-          // form = TempData["ReservationData"] as Reservation;
             if (ModelState.IsValid)
             {
                 bool tableExist = db.Tables.Any(table => table.Status == Status.Free && table.BookingForms.All(a => a.ReservationDate != form.ReservationDate));
@@ -38,7 +37,6 @@ namespace MvcRestaurant.Controllers
                 {
                     TempData["ReservationData"] = form;
                     return RedirectToAction("ViewDiagram");
-                   // form.Message = "Successful completion";
 
                 }
             }
@@ -54,7 +52,6 @@ namespace MvcRestaurant.Controllers
 
         public ActionResult ViewDiagram()
         {
-           // Reservation form = new Reservation();
           var form = TempData["ReservationData"] as Reservation;
            
             BookingTable bookT = new BookingTable();
@@ -84,8 +81,6 @@ namespace MvcRestaurant.Controllers
                 bookT.TablesView.Add(tableView);
             }
             bookT.Reservation = form;
-           // TempData["ReservationData"] = form;
-           // return RedirectToAction("Index");
             return View(bookT);
         }
 
@@ -103,7 +98,7 @@ namespace MvcRestaurant.Controllers
                 var myReservation = bConfirm.Reservation;
 
                 myReservation.TableId = hiddenIdTable;
-
+                
                 db.BookingForms.Add(myReservation);
                 db.SaveChanges();
             }

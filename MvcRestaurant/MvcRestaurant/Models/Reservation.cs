@@ -9,7 +9,7 @@ namespace MvcRestaurant.Models
     {
         public Reservation()
         {
-            //Tables = new List<Table>();
+           
         }
         public int ReservationId { get; set; }
         public int NumberOfPeople { get; set; }
