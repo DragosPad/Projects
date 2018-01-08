@@ -20,14 +20,12 @@
  <div>
   <table>
       
-      @foreach (var item in Model.Fligth.Planes)
-      {
-        
-          for (int i = 0; i < item.NumberRow; i++)
+      
+          @for (int i = 0; i < Model.Fligth.Plane.NumberRow; i++)
           {
               <div>
              
-             @for (int j = 0; j < item.NumberPlaceRow; j++)
+             @for (int j = 0; j < Model.Fligth.Plane.NumberPlaceRow; j++)
              {
                
                  @Html.Image("/Content/images/seat1.gif", "alt", "100", new { @class = "imag", data_x = i, data_y = j})
@@ -35,8 +33,6 @@
                               
              }
               </div>
-
-          }
            
       
       }
@@ -90,6 +86,9 @@
         <div class="editor-label">
             @Html.LabelFor(model => model.NamePassenger)
         </div>
+        <div>
+             @Html.HiddenFor(model => model.Reservation.ReservationId)
+        </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.NamePassenger)
             @Html.ValidationMessageFor(model => model.NamePassenger)
@@ -100,7 +99,7 @@
             @Html.LabelFor(model => model.BirthdatePassenger)
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.BirthdatePassenger, new { @class = "datetime", type = "datetime" })
+            @Html.TextBoxFor(model => model.BirthdatePassenger, new {id = "ReservationDate", @class = "datetime", type = "datetime" })
             @Html.ValidationMessageFor(model => model.BirthdatePassenger)
         </div>
         <div class="editor-label">

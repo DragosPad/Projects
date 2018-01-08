@@ -15,6 +15,6 @@ namespace AirlineCompany.Models
         public int PlaceRow { get; set; }
         public int PlaceColumn { get; set; }
         public string ImageUrl { get; set; }
-        public virtual Fligth Fligth { get; set; }
+       // public virtual Fligth Fligth { get; set; }
     }
 }

@@ -16,10 +16,10 @@ namespace AirlineCompany.ViewModels
         public long CNP { get; set; }
         public int PlaceRow { get; set; }
         public int PlaceColumn { get; set; }
+        public Reservation Reservation { get; set; }
 
-        //public int NumberRow { get; set; }
-        //public int NumberPlaceRow { get; set; }
+      
 
-       // public Plane Planes { get; set; }
+        public Plane Plane { get; set; }
     }
 }

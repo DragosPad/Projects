@@ -14,6 +14,7 @@ namespace AirlineCompany.Models
         public string DepartureTime { get; set; }
         public string ArrivalTime { get; set; }
         public DateTime DateFlight { get; set; }
-        public virtual List<Plane> Planes { get; set; }
+        public virtual Plane Plane { get; set; }
+       
     }
 }

@@ -19,7 +19,7 @@ namespace AirlineCompany.Controllers
         private AirlineEntities db = new AirlineEntities();
         public ActionResult Index()
         {
-            var fligth = db.Fligths.Include( f => f.Planes);
+            var fligth = db.Fligths.Include( f => f.Plane);
             return View(fligth);
         }
         //[HttpPost]
@@ -41,7 +41,7 @@ namespace AirlineCompany.Controllers
         public ActionResult ViewSeat(int fligthId)
         {
             SeatsModelView seatView = new SeatsModelView();
-            Fligth fligth = db.Fligths.Include(f => f.Planes).Single(f => f.FligthId == fligthId);
+            Fligth fligth = db.Fligths.Include(f => f.Plane).Single(f => f.FligthId == fligthId);
             InformationPassenger infoPass = new InformationPassenger();
             //seatView.Planes = new Plane();
             seatView.Fligth = fligth;
@@ -54,23 +54,21 @@ namespace AirlineCompany.Controllers
         }
 
         [HttpPost]
-        public ActionResult ViewSeat(SeatsModelView seatView, int hiddenIdSeat, int hiddenIdSeatColumn)
+        public ActionResult ViewSeat(SeatsModelView seatView, FligthSeatInformationView fligthSeatInfoView, int hiddenIdSeat, int hiddenIdSeatColumn)
         {
-            InformationPassenger infoPassenger = new InformationPassenger();
-            Plane infoPlane = new Plane();
-            //Fligth fligth = new Fligth();
+           
             if (ModelState.IsValid)
             {
-                Fligth fligth = seatView.Fligth;                
-                infoPassenger.NamePassenger = seatView.NamePassenger;
-                infoPassenger.BirthdatePassenger = seatView.BirthdatePassenger;
-                infoPassenger.CNP = seatView.CNP;
+                Reservation reservation = new Reservation();
+                var changeReservation = db.Reservations.SingleOrDefault(t => t.ReservationId == reservation.ReservationId);
+                changeReservation.NamePassenger = seatView.NamePassenger;
+                changeReservation.BirthdatePassenger = seatView.BirthdatePassenger;
+                changeReservation.CNP = seatView.CNP;
+                changeReservation.FligthId = fligthSeatInfoView.FligthId;
+                changeReservation.PlaceRow = hiddenIdSeat;
+                changeReservation.PlaceColumn = hiddenIdSeatColumn;
 
-                var myDetailsInfo = seatView.Fligth;
-              
-                
-                
-                db.InformationPassenger.Add(infoPassenger);
+                //db.InformationPassenger.Add(changeReservation);
                 db.SaveChanges();
                 return RedirectToAction("Confirm");
             }
@@ -79,17 +77,15 @@ namespace AirlineCompany.Controllers
 
         public ActionResult FligthsFromLocation(string search, DateTime? date)
         {
-            //FligthsFromLocationView fligthsView = new FligthsFromLocationView();
+         
             ViewBag.CurrentFilter = search;
             var searchForm = from s in db.Fligths
                              select s;
             if (!String.IsNullOrEmpty(search) && date.HasValue)
             {
-                //FligthsFromLocationView fligthsView = new FligthsFromLocationView();
                 searchForm = searchForm.Where(s => s.Location.Contains(search) && s.DateFlight == date);
-               // fligthsView.Fligths = searchForm;
             }
-            //fligthsView.Fligths = searchForm;
+           
             return View(searchForm.ToList());
         }
 
@@ -109,7 +105,7 @@ namespace AirlineCompany.Controllers
 
         public ActionResult StartLocation()
         {
-          //Fligth fligth = new Fligth();
+          
             var fligth = db.Fligths.ToList();
 
             return View(fligth);
