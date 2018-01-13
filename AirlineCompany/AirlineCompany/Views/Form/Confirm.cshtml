@@ -1,5 +1,57 @@
-﻿@{
+﻿@using AirlineCompany.Models
+
+@model IEnumerable<AirlineCompany.Models.Reservation>
+
+@{
     ViewBag.Title = "Confirm";
 }
 
 <h2>Confirm successful</h2>
+
+<table>
+    <tr>
+        <th>
+             FligthId
+        </th>
+        <th>
+            NamePassenger
+        </th>
+        <th>
+            BirthdatePassenger
+        </th>
+        <th>
+             CNP 
+        </th>
+        <th>
+            PlaceRow
+        </th>
+         <th>
+            PlaceColumn
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+       <tr>
+           <td>
+               @Html.DisplayFor(modelItem => item.FligthId)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.NamePassenger)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.BirthdatePassenger)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.CNP)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.PlaceRow)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.PlaceColumn)
+           </td>
+       </tr>
+    
+    }
+</table>

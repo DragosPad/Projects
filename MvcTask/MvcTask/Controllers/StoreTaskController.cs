@@ -23,10 +23,6 @@ namespace MvcTask.Controllers
         public ActionResult Create(int? parentListId)
         {
             ViewBag.TaskId = new SelectList(db.Tasks, "TaskId");
-            //ViewBag.ParentListId = parentListId;
-          //  Task task = new Task();
-          //  task.ListGenId = parentListId;
-           // task.Deadline = DateTime.Now;
            
             return View();
         }
@@ -38,7 +34,6 @@ namespace MvcTask.Controllers
             {
                
                 task.ListGenId = parentListId;
-               // list.Tasks.Add(task);
                 db.Tasks.Add(task);
                 db.SaveChanges();
                 return RedirectToAction("Edit", "StoreListGen", new { listId = task.ListGenId });

@@ -22,57 +22,47 @@ namespace AirlineCompany.Controllers
             var fligth = db.Fligths.Include( f => f.Plane);
             return View(fligth);
         }
-        //[HttpPost]
-        //public ActionResult Index()
-        //{
-        //    //if (ModelState.IsValid)
-        //    //{
-        //    //    //db.Forms.Add(form);
-        //    //    //db.SaveChanges();
-        //    //    form.Message = "Successful completion";
-        //    //    return RedirectToAction("StartLocation");
-        //    //}
-            
-            
-        //    return View();
-        
-        //}
 
         public ActionResult ViewSeat(int fligthId)
         {
             SeatsModelView seatView = new SeatsModelView();
+            seatView.BirthdatePassenger = null;
             Fligth fligth = db.Fligths.Include(f => f.Plane).Single(f => f.FligthId == fligthId);
-            InformationPassenger infoPass = new InformationPassenger();
-            //seatView.Planes = new Plane();
             seatView.Fligth = fligth;
-            seatView.NamePassenger = infoPass.NamePassenger;
-            seatView.BirthdatePassenger = infoPass.BirthdatePassenger;
-            seatView.CNP = infoPass.CNP;
            
-            
             return View(seatView);
         }
 
         [HttpPost]
         public ActionResult ViewSeat(SeatsModelView seatView, FligthSeatInformationView fligthSeatInfoView, int hiddenIdSeat, int hiddenIdSeatColumn)
         {
-           
+
             if (ModelState.IsValid)
             {
                 Reservation reservation = new Reservation();
-                var changeReservation = db.Reservations.SingleOrDefault(t => t.ReservationId == reservation.ReservationId);
-                changeReservation.NamePassenger = seatView.NamePassenger;
-                changeReservation.BirthdatePassenger = seatView.BirthdatePassenger;
-                changeReservation.CNP = seatView.CNP;
-                changeReservation.FligthId = fligthSeatInfoView.FligthId;
-                changeReservation.PlaceRow = hiddenIdSeat;
-                changeReservation.PlaceColumn = hiddenIdSeatColumn;
+                reservation.NamePassenger = seatView.NamePassenger;
+                if (seatView.BirthdatePassenger.HasValue)
+                {
+                    reservation.BirthdatePassenger = seatView.BirthdatePassenger.Value;
+                }
+                if (seatView.CNP.HasValue)
+                {
+                    reservation.CNP = seatView.CNP.Value;
+                }
+                reservation.FligthId = fligthSeatInfoView.FligthId;
+                reservation.PlaceRow = hiddenIdSeat;
+                reservation.PlaceColumn = hiddenIdSeatColumn;
 
-                //db.InformationPassenger.Add(changeReservation);
+                db.Reservations.Add(reservation);
                 db.SaveChanges();
                 return RedirectToAction("Confirm");
             }
-            return View();
+            else
+            {
+                Fligth fligth = db.Fligths.Include(f => f.Plane).Single(f => f.FligthId == fligthSeatInfoView.FligthId);
+                seatView.Fligth = fligth;
+                return View(seatView);
+            }
         }
 
         public ActionResult FligthsFromLocation(string search, DateTime? date)
@@ -113,8 +103,8 @@ namespace AirlineCompany.Controllers
 
         public ActionResult Confirm()
         {
-
-            return View();
+            var reservation = db.Reservations.ToList();
+            return View(reservation);
         }
 
     }
