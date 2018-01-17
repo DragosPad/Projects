@@ -11,16 +11,28 @@
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>Fligths From Location</legend>
-        
-    
-       <p>
-            Find Location : @Html.TextBox("search", ViewBag.CurrentFilter as string)
+
+      
+         <p>
+            <label> Location : </label>  @Html.TextBox("search", ViewBag.CurrentFilter as string, new {id = "searc" })
            
         </p>
         <p>
-             View the flights this day : @Html.TextBox("date", ViewBag.CurrentFilter as string, new { @class="datetime", type = "datetime"})
+             <label>View the flights this day : </label>  @Html.TextBox("date", ViewBag.CurrentFilter as string, new { id = "searc", @class="datetime", type = "datetime"})
+        </p>
+       
+        @* @if (ViewBag.CurrentFilter != null)
+       {
+        <p>
+            <input type="submit" value="Search" disabled/>
+        </p>
+       }
+        else
+        {
+        *@<p>
             <input type="submit" value="Search" />
         </p>
+      
     </fieldset>
 }
 <table>
@@ -70,7 +82,7 @@
                @Html.DisplayFor(modelItem => item.DateFlight)
            </td>
            <td>
-               @Html.ActionLink("ViewSeat", "ViewSeat", "Form", new { fligthId = item.FligthId}, null)
+               @Html.ActionLink("View Seat", "ViewSeat", "Form", new { fligthId = item.FligthId}, null)
            </td>
        </tr>
     
@@ -88,3 +100,11 @@
 
     });
 </script>  
+
+@*<script>
+    $(document).ready(function () {
+        $('#searc').change(function () {
+            $('#submit').submit();
+        });
+    });
+</script>*@

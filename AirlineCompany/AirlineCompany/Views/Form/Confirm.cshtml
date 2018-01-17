@@ -1,6 +1,6 @@
 ﻿@using AirlineCompany.Models
 
-@model IEnumerable<AirlineCompany.Models.Reservation>
+@model AirlineCompany.Models.Reservation
 
 @{
     ViewBag.Title = "Confirm";
@@ -8,7 +8,65 @@
 
 <h2>Confirm successful</h2>
 
-<table>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Confirm Passenger</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FligthId)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.FligthId)
+            @Html.ValidationMessageFor(model => model.FligthId)
+
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NamePassenger)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.NamePassenger)
+            @Html.ValidationMessageFor(model => model.NamePassenger)
+
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BirthdatePassenger)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.BirthdatePassenger)
+            @Html.ValidationMessageFor(model => model.BirthdatePassenger)
+
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CNP)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.CNP)
+            @Html.ValidationMessageFor(model => model.CNP)
+
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PlaceRow)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.PlaceRow)
+            @Html.ValidationMessageFor(model => model.PlaceRow)
+
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PlaceColumn)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.PlaceColumn)
+            @Html.ValidationMessageFor(model => model.PlaceColumn)
+
+        </div>
+        
+    </fieldset>
+}
+
+
+@*<table>
     <tr>
         <th>
              FligthId
@@ -54,4 +112,4 @@
        </tr>
     
     }
-</table>
+</table>*@

@@ -1,7 +1,7 @@
 ﻿*
 {
-	margin: 0px;
-	padding: 0px;
+	margin: 2px;
+	padding: 3px;
 	border: none;
 }
 
@@ -246,15 +246,18 @@ p em
 /* Form styles */
 legend
 {
-	padding: 10px;
+	padding: 20px;
 	font-weight: bold;
+    font-size: 200%;
 }
 
 fieldset
 {
-	border: #9b9993 1px solid;
-	padding: 0 10px;
-	margin-bottom: 10px;
+	border: #9b9993 2px solid;
+    height: 270px;
+    width: 500px;
+	padding: 0 20px;
+	margin-bottom: 20px;
 	clear: left;
 }
 
@@ -400,7 +403,7 @@ width: 300px;
 vertical-align:middle;    
 list-style: none outside none;
 /*padding-left:35px;*/
-height:70px;
+height:50px;
 /*width: 150px;*/
 /*float:left;*/
 
@@ -413,6 +416,38 @@ padding-left: 5px;
 
 #seatDescription {
 position: absolute;
-right: 100px;
+right: 150px;
+
+  
 }
 
+label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 160px;
+    text-align: left;
+}
+
+.imag{
+height: 50px;
+width: 50px;
+
+}
+
+#Legend
+{
+	padding: 20px;
+	font-weight: bold;
+    font-size: 150%;
+}
+
+.front {
+padding: 20px;
+	font-weight: bold;
+    font-size: 150%;
+}
+.seatMap {
+width: 50%;    
+background-color: #f1f1c1;
+}

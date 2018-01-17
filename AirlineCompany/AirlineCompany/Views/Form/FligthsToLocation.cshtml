@@ -14,11 +14,13 @@
         
     
        <p>
-            Find Destination: @Html.TextBox("search", ViewBag.CurrentFilter as string)
+           <label>Find Destination:</label> @Html.TextBox("search", ViewBag.CurrentFilter as string)
            
         </p>
         <p>
-            View the flights this day : @Html.TextBox("date", ViewBag.CurrentFilter as string, new { @class="datetime", type = "datetime"})
+            <label>View the flights this day :</label> @Html.TextBox("date", ViewBag.CurrentFilter as string, new { @class="datetime", type = "datetime"})
+        </p>
+         <p>
             <input type="submit" value="Search" />
         </p>
     </fieldset>
@@ -71,7 +73,7 @@
                @Html.DisplayFor(modelItem => item.DateFlight)
            </td>
            <td>
-              @Html.ActionLink("ViewSeat", "ViewSeat", "Form", new { fligthId = item.FligthId}, null)
+              @Html.ActionLink("View Seat", "ViewSeat", "Form", new { fligthId = item.FligthId}, null)
              
            </td>
        </tr>

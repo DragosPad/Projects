@@ -34,7 +34,7 @@ namespace AirlineCompany.Controllers
         }
 
         [HttpPost]
-        public ActionResult ViewSeat(SeatsModelView seatView, FligthSeatInformationView fligthSeatInfoView, int hiddenIdSeat, int hiddenIdSeatColumn)
+        public ActionResult ViewSeat(SeatsModelView seatView, FligthSeatInformationView fligthSeatInfoView)
         {
 
             if (ModelState.IsValid)
@@ -50,12 +50,12 @@ namespace AirlineCompany.Controllers
                     reservation.CNP = seatView.CNP.Value;
                 }
                 reservation.FligthId = fligthSeatInfoView.FligthId;
-                reservation.PlaceRow = hiddenIdSeat;
-                reservation.PlaceColumn = hiddenIdSeatColumn;
+                reservation.PlaceRow = fligthSeatInfoView.PlaceRow;
+                reservation.PlaceColumn = fligthSeatInfoView.PlaceColumn;
 
                 db.Reservations.Add(reservation);
                 db.SaveChanges();
-                return RedirectToAction("Confirm");
+                return RedirectToAction("Confirm", new { reservedId = reservation.ReservationId });
             }
             else
             {
@@ -71,9 +71,9 @@ namespace AirlineCompany.Controllers
             ViewBag.CurrentFilter = search;
             var searchForm = from s in db.Fligths
                              select s;
-            if (!String.IsNullOrEmpty(search) && date.HasValue)
+            if (!String.IsNullOrEmpty(search) || date.HasValue)
             {
-                searchForm = searchForm.Where(s => s.Location.Contains(search) && s.DateFlight == date);
+                searchForm = searchForm.Where(s => s.Location.Contains(search) || s.DateFlight == date);
             }
            
             return View(searchForm.ToList());
@@ -82,15 +82,17 @@ namespace AirlineCompany.Controllers
         public ActionResult FligthsToLocation(string search, DateTime? date)
         {
             ViewBag.CurrentFilter = search;
+         
             var searchForm = from s in db.Fligths
                              select s;
-            if (!String.IsNullOrEmpty(search) && date.HasValue)
+
+            if (!String.IsNullOrEmpty(search) || date.HasValue)
             {
-                searchForm = searchForm.Where(s => s.Location.Contains(search) && s.DateFlight == date);
+                searchForm = searchForm.Where(s => s.Destination.Contains(search) || s.DateFlight == date);
                 
             }
-           
-            return View(searchForm.ToList());
+          
+            return View(searchForm);
         }
 
         public ActionResult StartLocation()
@@ -101,9 +103,10 @@ namespace AirlineCompany.Controllers
             return View(fligth);
         }
 
-        public ActionResult Confirm()
+        public ActionResult Confirm(int reservedId)
         {
-            var reservation = db.Reservations.ToList();
+           // var reservation = db.Reservations.ToList();
+            Reservation reservation = db.Reservations.Single(r => r.ReservationId == reservedId);
             return View(reservation);
         }
 

@@ -6,11 +6,11 @@ $(".imag").on('click', function () {
 
     if (lastSeat != null) {
 
-        if (lastSeat.attr("src") == "/Content/images/seat1.gif") {
-            lastSeat.attr("src", "/Content/images/seat2.gif")
+        if (lastSeat.attr("src") == "/Content/images/SeatAvailable.png") {
+            lastSeat.attr("src", "/Content/images/SeatOccupied.png")
         }
         else {
-            lastSeat.attr("src", "/Content/images/seat1.gif")
+            lastSeat.attr("src", "/Content/images/SeatAvailable.png")
         }
 
     }
@@ -23,16 +23,16 @@ $(".imag").on('click', function () {
     var column = coord_seat_y_txt.val($(this).attr("data_y"));
     lastSeat = $(this);
 
-    if ($(this).attr("src").toString().indexOf('seat1.gif') != -1) {
+    if ($(this).attr("src").toString().indexOf('SeatAvailable.png') != -1) {
 
 
-        this.src = this.src.replace("seat1.gif", "seat2.gif");
+        this.src = this.src.replace("SeatAvailable.png", "SeatOccupied.png");
 
     }
 
     else {
 
-        this.src = this.src.replace("seat2.gif", "seat1.gif");
+        this.src = this.src.replace("SeatOccupied.png", "SeatAvailable.png");
         coord_seat_x_txt.val("");
         coord_seat_y_txt.val("");
 

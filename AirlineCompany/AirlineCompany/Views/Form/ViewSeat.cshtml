@@ -8,48 +8,40 @@
     ViewBag.Title = "ViewSeat";
 }
 
-<h2>ViewSeat</h2>
+<h2>View Seat</h2>
 
-<div class="demo">
-   		<div id="seat-map">
-			<div class="front">Seats</div>					
-		</div>
-			<div id="legend">Legend</div>
-    
-		</div>
- <div>
+<div class="front">Seats</div>					
   <table>
-      
-      
-          @for (int i = 0; i < Model.Fligth.Plane.NumberRow; i++)
+     
+       @for (int i = 0; i < Model.Fligth.Plane.NumberRow; i++)
           {
-              <div>
              
+             <div>
              @for (int j = 0; j < Model.Fligth.Plane.NumberPlaceRow; j++)
              {
                
-                 @Html.Image("/Content/images/seat1.gif", "alt", "100", new { @class = "imag", data_x = i, data_y = j})
+                 @Html.Image("/Content/images/SeatAvailable.png", "alt", "100", new { @class = "imag", data_x = i, data_y = j})
                           
                               
              }
               </div>
          }
         
-       </table>
-         
+       </table>  
      <div id="seatDescription">
+         <div id="Legend">Legend</div>
          <div>
-        <img src= "@Url.Content("~/Content/images/seat1.gif")" />
+        <img src= "@Url.Content("~/Content/images/SeatAvailable.png")" />
              <span>Available Table</span>
      </div>
 
      <div>
-        <img src= "@Url.Content("~/Content/images/seat2.gif")" />
+        <img src= "@Url.Content("~/Content/images/SeatOccupied.png")" />
              <span>Reserved Table</span>
      </div>
 
      <div>
-         <img src="@Url.Content("~/Content/images/seat3.gif")" /> 
+         <img src="@Url.Content("~/Content/images/SeatReserved.png")" /> 
               <span>Occupied Table</span>
      </div>
 
@@ -85,24 +77,18 @@
             @Html.ValidationMessageFor(model => model.CNP)
         </div>
    <div>
-        @Html.TextBox("hiddenIdSeat","", new {@class = "SelectSeat" })
+        @Html.Hidden("PlaceRow","", new {@class = "SelectSeat" })
    </div>
         <div>
-        @Html.TextBox("hiddenIdSeatColumn","", new {@class = "SelectSeatColumn" })
+        @Html.Hidden("PlaceColumn","", new {@class = "SelectSeatColumn" })
    </div>
-        
-    </fieldset>
-         
-             @*<div>
-              @Html.ActionLink("Confirm", "Confirm", "Form", new { reservedId = Model.ReservationId}, null)
-         </div>*@
-         
-         <p>
+        <p>
             <input type="submit" value="Confirm Rezervation Seat" />
        </p>
+    </fieldset>
+         
      }
 
- </div>
 
 
 
@@ -115,7 +101,7 @@
             dateFormat: "dd/M/yy",
             changeMonth: true,
             changeYear: true,
-            yearRange: "-60:+0"
+            yearRange: "1930:2000"
         });
 
     });
