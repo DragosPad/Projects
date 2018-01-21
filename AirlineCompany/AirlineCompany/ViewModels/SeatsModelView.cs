@@ -21,7 +21,7 @@ namespace AirlineCompany.ViewModels
         public DateTime? BirthdatePassenger { get; set; }
 
        [Required(ErrorMessage = "CNP is required")]
-       [StringLength(13)]
+      // [StringLength(13)]
         public long? CNP { get; set; }
         public int PlaceRow { get; set; }
         public int PlaceColumn { get; set; }
