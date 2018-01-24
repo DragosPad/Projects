@@ -14,23 +14,15 @@
 
       
          <p>
-            <label> Location : </label>  @Html.TextBox("search", ViewBag.CurrentFilter as string, new {id = "searc" })
+            <label> Location : </label>  @Html.TextBox("search", ViewBag.CurrentFilter as string, new {id = "message" })
            
         </p>
         <p>
-             <label>View the flights this day : </label>  @Html.TextBox("date", ViewBag.CurrentFilter as string, new { id = "searc", @class="datetime", type = "datetime"})
+             <label>View the flights this day : </label>  @Html.TextBox("date", ViewBag.CurrentFilter as string, new { id = "message1", @class="datetime", type = "datetime"})
         </p>
        
-        @* @if (ViewBag.CurrentFilter != null)
-       {
         <p>
-            <input type="submit" value="Search" disabled/>
-        </p>
-       }
-        else
-        {
-        *@<p>
-            <input type="submit" value="Search" />
+            <input type="submit" value="Search" id="sendSubmit" />
         </p>
       
     </fieldset>
@@ -101,10 +93,36 @@
     });
 </script>  
 
-@*<script>
+<script>
     $(document).ready(function () {
-        $('#searc').change(function () {
-            $('#submit').submit();
+        $('#sendSubmit').attr('disabled', true);
+        $('#message').keyup(function () {
+            if ($(this).val().length != 0)
+                $('#sendSubmit').attr('disabled', false);
+            else
+                $('#sendSubmit').attr('disabled', true);
+        })
+    });
+</script>
+@*<script type='text/javascript'>
+    $(function () {
+        $('#message').keyup(function () {
+            if ($(this).val() == '') {
+                $('#sendSubmit').prop('disabled', true);
+            } else {
+                $('#sendSubmit').prop('disabled', false);
+            }
         });
     });
 </script>*@
+<script>
+    $(document).ready(function () {
+        $('#sendSubmit1').attr('disabled', true);
+        $('#message1').keyup(function () {
+            if ($(this).val().length != 0)
+                $('#sendSubmit1').attr('disabled', false);
+            else
+                $('#sendSubmit1').attr('disabled', true);
+        })
+    });
+</script>
