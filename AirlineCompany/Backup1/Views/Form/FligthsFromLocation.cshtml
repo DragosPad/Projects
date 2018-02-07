@@ -1,0 +1,110 @@
+﻿@model IEnumerable<AirlineCompany.Models.Fligth>
+
+@{
+    ViewBag.Title = "FligthsFromLocation";
+}
+
+<h2>FligthsFromLocation</h2>
+
+@using (Html.BeginForm("FligthsFromLocation", "Form", FormMethod.Get))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Fligths From Location</legend>
+
+      
+         <p>
+            <label> Location : </label>  @Html.TextBox("search", ViewBag.CurrentFilter as string, new {id = "searc" })
+           
+        </p>
+        <p>
+             <label>View the flights this day : </label>  @Html.TextBox("date", ViewBag.CurrentFilter as string, new { id = "searc", @class="datetime", type = "datetime"})
+        </p>
+       
+        @* @if (ViewBag.CurrentFilter != null)
+       {
+        <p>
+            <input type="submit" value="Search" disabled/>
+        </p>
+       }
+        else
+        {
+        *@<p>
+            <input type="submit" value="Search" />
+        </p>
+      
+    </fieldset>
+}
+<table>
+    <tr>
+        <th>
+             Location
+        </th>
+        <th>
+            Destination
+        </th>
+        <th>
+            Departure Time
+        </th>
+        <th>
+             Flight Duration 
+        </th>
+        <th>
+            Arrival Time
+        </th>
+         <th>
+            Date Fligth
+        </th>
+        <th>
+            View Seat
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+       <tr>
+           <td>
+               @Html.DisplayFor(modelItem => item.Location)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.Destination)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.DepartureTime)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.FlightDuration)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.ArrivalTime)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.DateFlight)
+           </td>
+           <td>
+               @Html.ActionLink("View Seat", "ViewSeat", "Form", new { fligthId = item.FligthId}, null)
+           </td>
+       </tr>
+    
+    }
+</table>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('.datetime').datepicker({
+            dateFormat: "dd/M/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0"
+        });
+
+    });
+</script>  
+
+@*<script>
+    $(document).ready(function () {
+        $('#searc').change(function () {
+            $('#submit').submit();
+        });
+    });
+</script>*@

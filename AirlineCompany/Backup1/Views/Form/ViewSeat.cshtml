@@ -1,0 +1,108 @@
+﻿@using AirlineCompany.Models
+@using AirlineCompany.ViewModels
+
+
+@model AirlineCompany.ViewModels.SeatsModelView
+
+@{
+    ViewBag.Title = "ViewSeat";
+}
+
+<h2>View Seat</h2>
+
+<div class="front">Seats</div>					
+  <table>
+     
+       @for (int i = 0; i < Model.Fligth.Plane.NumberRow; i++)
+          {
+             
+             <div>
+             @for (int j = 0; j < Model.Fligth.Plane.NumberPlaceRow; j++)
+             {
+               
+                 @Html.Image("/Content/images/SeatAvailable.png", "alt", "100", new { @class = "imag", data_x = i, data_y = j})
+                          
+                              
+             }
+              </div>
+         }
+        
+       </table>  
+     <div id="seatDescription">
+         <div id="Legend">Legend</div>
+         <div>
+        <img src= "@Url.Content("~/Content/images/SeatAvailable.png")" />
+             <span>Available Table</span>
+     </div>
+
+     <div>
+        <img src= "@Url.Content("~/Content/images/SeatOccupied.png")" />
+             <span>Reserved Table</span>
+     </div>
+
+     <div>
+         <img src="@Url.Content("~/Content/images/SeatReserved.png")" /> 
+              <span>Occupied Table</span>
+     </div>
+
+ </div>
+
+     @using (Html.BeginForm())
+     {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Information Passenger</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NamePassenger)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NamePassenger)
+            @Html.ValidationMessageFor(model => model.NamePassenger)
+
+        </div>
+
+         <div class="editor-label">
+            @Html.LabelFor(model => model.BirthdatePassenger)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.BirthdatePassenger, new { @class = "datetime", type = "datetime" })
+            @Html.ValidationMessageFor(model => model.BirthdatePassenger)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CNP)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CNP)
+            @Html.ValidationMessageFor(model => model.CNP)
+        </div>
+   <div>
+        @Html.Hidden("PlaceRow","", new {@class = "SelectSeat" })
+   </div>
+        <div>
+        @Html.Hidden("PlaceColumn","", new {@class = "SelectSeatColumn" })
+   </div>
+        <p>
+            <input type="submit" value="Confirm Rezervation Seat" />
+       </p>
+    </fieldset>
+         
+     }
+
+
+
+
+<script src="@Url.Content("~/Scripts/SeatControl.js")" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('.datetime').datepicker({
+            dateFormat: "dd/M/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "1930:2000"
+        });
+
+    });
+</script>  

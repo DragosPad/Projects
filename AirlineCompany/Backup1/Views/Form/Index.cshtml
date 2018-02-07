@@ -1,0 +1,82 @@
+﻿@model IEnumerable<AirlineCompany.Models.Fligth>
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm("Index", "Form", FormMethod.Get)) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Form</legend>
+   
+           @*<p>
+            <input type="submit" value="Complete" />
+        </p>*@
+         @*<p> @Html.ActionLink("ViewSeat", "ViewSeat")
+             </p>*@
+         @*<p> @Html.ActionLink("View Fligth", "StartLocation", "Form")
+         </p>*@
+        <p>
+            @Html.ActionLink("View Fligths From Location", "FligthsFromLocation", "Form")
+        </p>
+        <p>
+            @Html.ActionLink("View Fligths To Location", "FligthsToLocation", "Form")
+        </p>
+     
+    </fieldset>
+}
+
+@*<table>
+    <tr>
+        <th>
+             Location
+        </th>
+        <th>
+            Destination
+        </th>
+        <th>
+            Time
+        </th>
+        <th>
+            Duration
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+       <tr>
+           <td>
+               @Html.DisplayFor(modelItem => item.Location)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.Destination)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.DepartureTime)
+           </td>
+            <td>
+               @Html.DisplayFor(modelItem => item.FlightDuration)
+           </td>
+       </tr>
+    
+    }
+</table>*@
+
+<script type="text/javascript">
+
+    
+    $(document).ready(function () {
+        $('.datetime').datepicker({
+            dateFormat: "dd/M/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0"
+        });
+
+    });
+</script> 
+ 
+ 
+     

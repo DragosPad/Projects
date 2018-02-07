@@ -1,0 +1,58 @@
+﻿@model IEnumerable<AirlineCompany.Models.Fligth>
+          
+
+@{
+    ViewBag.Title = "StartLocation";
+}
+
+<h2>StartLocation</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Fligth</legend>
+        
+
+    </fieldset>
+    <table>
+ <tr>
+    <th>
+    Location
+     </th>
+    <th>
+      Destination
+    </th>
+     <th>
+         Flight Duration
+     </th>
+     <th>
+         Departure Time
+     </th>
+
+  </tr>
+ @foreach (var item in Model)
+{ 
+    <tr>
+        <td>
+            @Html.DisplayFor(model => item.Location)
+           
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.Destination)
+           
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.FlightDuration)
+           
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.DepartureTime)
+           
+        </td>
+ 
+    </tr>
+       
+}
+</table>
+
+}

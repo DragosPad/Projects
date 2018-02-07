@@ -1,0 +1,115 @@
+﻿@using AirlineCompany.Models
+
+@model AirlineCompany.Models.Reservation
+
+@{
+    ViewBag.Title = "Confirm";
+}
+
+<h2>Confirm successful</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Confirm Passenger</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FligthId)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.FligthId)
+            @Html.ValidationMessageFor(model => model.FligthId)
+
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NamePassenger)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.NamePassenger)
+            @Html.ValidationMessageFor(model => model.NamePassenger)
+
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BirthdatePassenger)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.BirthdatePassenger)
+            @Html.ValidationMessageFor(model => model.BirthdatePassenger)
+
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CNP)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.CNP)
+            @Html.ValidationMessageFor(model => model.CNP)
+
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PlaceRow)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.PlaceRow)
+            @Html.ValidationMessageFor(model => model.PlaceRow)
+
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PlaceColumn)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.PlaceColumn)
+            @Html.ValidationMessageFor(model => model.PlaceColumn)
+
+        </div>
+        
+    </fieldset>
+}
+
+
+@*<table>
+    <tr>
+        <th>
+             FligthId
+        </th>
+        <th>
+            NamePassenger
+        </th>
+        <th>
+            BirthdatePassenger
+        </th>
+        <th>
+             CNP 
+        </th>
+        <th>
+            PlaceRow
+        </th>
+         <th>
+            PlaceColumn
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+       <tr>
+           <td>
+               @Html.DisplayFor(modelItem => item.FligthId)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.NamePassenger)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.BirthdatePassenger)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.CNP)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.PlaceRow)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.PlaceColumn)
+           </td>
+       </tr>
+    
+    }
+</table>*@

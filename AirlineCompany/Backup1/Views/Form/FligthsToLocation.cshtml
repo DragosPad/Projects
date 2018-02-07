@@ -1,0 +1,94 @@
+﻿@model IEnumerable<AirlineCompany.Models.Fligth>
+
+@{
+    ViewBag.Title = "FligthsToLocation";
+}
+
+<h2>FligthsToLocation</h2>
+
+@using (Html.BeginForm("FligthsToLocation", "Form", FormMethod.Get))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Fligths To Location</legend>
+        
+    
+       <p>
+           <label>Find Destination:</label> @Html.TextBox("search", ViewBag.CurrentFilter as string)
+           
+        </p>
+        <p>
+            <label>View the flights this day :</label> @Html.TextBox("date", ViewBag.CurrentFilter as string, new { @class="datetime", type = "datetime"})
+        </p>
+         <p>
+            <input type="submit" value="Search" />
+        </p>
+    </fieldset>
+}
+<table>
+    <tr>
+        <th>
+             Destination
+        </th>
+        <th>
+            Location
+        </th>
+        <th>
+            Departure Time
+        </th>
+        <th>
+             Flight Duration 
+        </th>
+        <th>
+            Arrival Time
+        </th>
+         <th>
+            Date Fligth
+        </th>
+        <th>
+            View Seats
+        </th>
+       
+    </tr>
+
+    @foreach (var item in Model)
+    {
+       <tr>
+           <td>
+               @Html.DisplayFor(modelItem => item.Destination)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.Location)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.DepartureTime)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.FlightDuration)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.ArrivalTime)
+           </td>
+           <td>
+               @Html.DisplayFor(modelItem => item.DateFlight)
+           </td>
+           <td>
+              @Html.ActionLink("View Seat", "ViewSeat", "Form", new { fligthId = item.FligthId}, null)
+             
+           </td>
+       </tr>
+    
+    }
+</table>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('.datetime').datepicker({
+            dateFormat: "dd/M/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0"
+        });
+
+    });
+</script>  
