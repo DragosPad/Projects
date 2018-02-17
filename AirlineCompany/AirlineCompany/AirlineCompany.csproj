@@ -98,6 +98,7 @@
   <ItemGroup>
     <Compile Include="Controllers\FormController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -216,6 +217,7 @@
     <Content Include="Views\Form\FligthsFromLocation.cshtml" />
     <Content Include="Views\Form\FligthsToLocation.cshtml" />
     <Content Include="Views\Form\Confirm.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

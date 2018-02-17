@@ -9,5 +9,6 @@ namespace AirlineCompany.ViewModels
     public class FligthsFromLocationView
     {
         public Fligth Fligths { get; set; }
+
     }
 }

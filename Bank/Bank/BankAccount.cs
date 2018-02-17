@@ -35,8 +35,9 @@ namespace Bank
             get { return m_balance; }
         }
 
-        public void Debit(double amount)
+        public double Debit(double amount)
         {
+            //amount = 11;
             if (m_frozen)
             {
                 throw new ArgumentOutOfRangeException("amount");
@@ -51,6 +52,7 @@ namespace Bank
                 throw new ArgumentOutOfRangeException("amount", amount, DebitAmountLessThanZeroMessage);
             }
             m_balance -= amount; // intentionally incorrect code  
+            return 2;
         }
 
         public void Credit(double amount)

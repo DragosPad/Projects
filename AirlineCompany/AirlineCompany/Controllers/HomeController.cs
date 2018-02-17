@@ -13,6 +13,7 @@ namespace AirlineCompany.Controllers
 
         public ActionResult Index()
         {
+           
             return View();
         }
 

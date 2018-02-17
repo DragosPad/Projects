@@ -19,6 +19,7 @@ namespace AirlineCompany.Controllers
         private AirlineEntities db = new AirlineEntities();
         public ActionResult Index()
         {
+            ViewBag.Message = "Salut";
             var fligth = db.Fligths.Include( f => f.Plane);
             return View(fligth);
         }
@@ -67,7 +68,7 @@ namespace AirlineCompany.Controllers
 
         public ActionResult FligthsFromLocation(string search, DateTime? date)
         {
-         
+            ViewBag.Message = "Salut.";
             ViewBag.CurrentFilter = search;
             var searchForm = from s in db.Fligths
                              select s;
