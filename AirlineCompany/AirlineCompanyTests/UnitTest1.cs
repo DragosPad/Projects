@@ -43,15 +43,15 @@ namespace AirlineCompanyTests
             Assert.AreEqual("Paris", model.Location);
         }
 
-        [TestMethod]
-        public void FligthsFromLocation_ViewBag_search()
-        {
-            FormController controller = new FormController();
+        //[TestMethod]
+        //public void FligthsFromLocation_ViewBag_search()
+        //{
+        //    FormController controller = new FormController();
 
-            ViewResult result = controller.FligthsFromLocation(null, null) as ViewResult;
+        //    ViewResult result = controller.FligthsFromLocation(null, null) as ViewResult;
 
-            Assert.AreEqual("Paris", result.ViewBag.CurrentFilter);
-        }
+        //    Assert.AreEqual("Paris", result.ViewBag.CurrentFilter);
+        //}
 
 
     }
