@@ -74,8 +74,9 @@ namespace AirlineCompany.Controllers
             {
                 searchForm = searchForm.Where(s => s.Location.Contains(search) || s.DateFlight == date);
             }
-           
+
             return View(searchForm.ToList());
+           
         }
 
         public ActionResult FligthsToLocation(string search, DateTime? date)

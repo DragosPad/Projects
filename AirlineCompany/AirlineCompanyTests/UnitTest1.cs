@@ -11,10 +11,33 @@ namespace AirlineCompanyTests
     [TestClass]
     public class UnitTest1
     {
-        
-       
+
+
         [TestMethod]
         public void FligthsFromLocation_SearchStringNotFilled_AllFlightsAreReturned()
+        {
+            System.Data.Entity.Database.SetInitializer(new AirlineCompany.Models.SampleData());
+            FormController controller = new FormController();
+            var viewResult = controller.FligthsFromLocation(null, null) as ViewResult;
+            var model = viewResult.ViewData.Model as IEnumerable<Fligth>;
+
+            Assert.AreEqual(6, model.Count());
+        }
+
+        [TestMethod]
+        public void FligthsToLocation_SearchStringNotFilled_AllFlightsAreReturn()
+        {
+            System.Data.Entity.Database.SetInitializer(new AirlineCompany.Models.SampleData());
+            FormController controller = new FormController();
+            var viewResult = controller.FligthsToLocation(null, null) as ViewResult;
+            var model = viewResult.ViewData.Model as IEnumerable<Fligth>;
+
+            Assert.AreEqual(6, model.Count());
+        }
+
+       
+        [TestMethod]
+        public void FligthsToLocation_SearchStringNotFilled_AllFlightsAreReturned()
         {
             System.Data.Entity.Database.SetInitializer(new AirlineCompany.Models.SampleData());
             FormController controller = new FormController();
@@ -39,7 +62,7 @@ namespace AirlineCompanyTests
             ViewResult viewResult = result as ViewResult;
             var model = viewResult.ViewData.Model as Reservation;
 
-            Assert.AreEqual(1, model.ReservationId);
+            Assert.AreEqual(1, (viewResult.ViewData.Model as Reservation).ReservationId);
 
             //Assert.AreEqual(string.Empty, viewResult.ViewName);
              
@@ -55,22 +78,40 @@ namespace AirlineCompanyTests
             var result = controller.FligthsFromLocation("Paris", null) as ViewResult;
             //var model = (List<Fligth>) result.ViewData.Model;
            var model = result.ViewData.Model as IEnumerable<Fligth>;
-            Assert.IsTrue(model.All(f => f.Location == "Paris"));
+            Assert.IsTrue(model.Count() == 1);
         }
 
+        [TestMethod]
+        public void FligthsFromLocation_SearchDateTime()
+        {
+            System.Data.Entity.Database.SetInitializer(new AirlineCompany.Models.SampleData());
+            FormController controller = new FormController();
+            var result = controller.FligthsFromLocation(null, new DateTime(2017, 12, 10)) as ViewResult;
+            //var model = (List<Fligth>) result.ViewData.Model;
+            var model = result.ViewData.Model as IEnumerable<Fligth>;
+            Assert.IsTrue(model.Count() == 2);
+        }
 
+        [TestMethod]
+        public void FligthsToLocation_SearchName()
+        {
+            System.Data.Entity.Database.SetInitializer(new AirlineCompany.Models.SampleData());
+            FormController controller = new FormController();
+            var result = controller.FligthsToLocation("Rome", null) as ViewResult;
+            //var model = (List<Fligth>) result.ViewData.Model;
+            var model = result.ViewData.Model as IEnumerable<Fligth>;
+            Assert.IsTrue(model.Count() == 2);
+        }
 
-
-
-        //[TestMethod]
-        //public void FligthsFromLocation_ViewBag_search()
-        //{
-        //    FormController controller = new FormController();
-
-        //    ViewResult result = controller.FligthsFromLocation(null, null) as ViewResult;
-
-        //    Assert.AreEqual("Paris", result.ViewBag.CurrentFilter);
-        //}
+        [TestMethod]
+        public void FligthsToLocation_SearchDateTime()
+        {
+            System.Data.Entity.Database.SetInitializer(new AirlineCompany.Models.SampleData());
+            FormController controller = new FormController();
+            var result = controller.FligthsToLocation(null, new DateTime(2017, 12, 12)) as ViewResult;
+            var model = result.ViewData.Model as IEnumerable<Fligth>;
+            Assert.IsTrue(model.Count() == 4);
+        }
 
 
     }
