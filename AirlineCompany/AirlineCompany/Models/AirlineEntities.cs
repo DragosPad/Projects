@@ -12,6 +12,13 @@ namespace AirlineCompany.Models
         public DbSet<Plane> Planes { get; set; }
         public DbSet<InformationPassenger> InformationPassenger { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
+
+        public AirlineEntities()
+        {
+            this.Configuration.LazyLoadingEnabled = false;
+        }
        
     }
+
+    
 }

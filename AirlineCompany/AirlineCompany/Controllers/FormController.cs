@@ -28,6 +28,8 @@ namespace AirlineCompany.Controllers
             SeatsModelView seatView = new SeatsModelView();
             seatView.BirthdatePassenger = null;
             Fligth fligth = db.Fligths.Include(f => f.Plane).Single(f => f.FligthId == fligthId);
+            //Fligth fligth = db.Fligths.Single(f => f.FligthId == fligthId);
+
             seatView.Fligth = fligth;
            
             return View(seatView);

@@ -23,9 +23,5 @@ namespace AirlineCompany.ViewModels
        [Required(ErrorMessage = "CNP is required")]
       // [StringLength(13)]
         public long? CNP { get; set; }
-        public int PlaceRow { get; set; }
-        public int PlaceColumn { get; set; }
-        public Plane Plane { get; set; }
-        public int ReservationId { get; set; }
     }
 }

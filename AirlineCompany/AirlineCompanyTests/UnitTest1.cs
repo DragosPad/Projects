@@ -4,6 +4,7 @@ using AirlineCompany.Controllers;
 using System.Web.Mvc;
 using System.Collections.Generic;
 using AirlineCompany.Models;
+using AirlineCompany.ViewModels;
 using System.Linq;
 
 namespace AirlineCompanyTests
@@ -113,6 +114,112 @@ namespace AirlineCompanyTests
             Assert.IsTrue(model.Count() == 4);
         }
 
+        [TestMethod]
+        public void ViewSeat_FlightIdSent_FligthWithCorectIdReturned()
+        {
+          //arrange
+            System.Data.Entity.Database.SetInitializer(new AirlineCompany.Models.SampleData());
+            FormController controller = new FormController();
+
+            //act
+            var result = controller.ViewSeat(3) as ViewResult;
+            var model = result.ViewData.Model as SeatsModelView;
+
+            //assert
+            Assert.AreEqual(3, model.Fligth.FligthId);
+            
+        }
+
+        [TestMethod]
+        public void ViewSeat_FligthIdSent_PlaneIsNotNull()
+        {
+            //arrange
+            System.Data.Entity.Database.SetInitializer(new AirlineCompany.Models.SampleData());
+            FormController controller = new FormController();
+
+            //act
+            var result = controller.ViewSeat(3) as ViewResult;
+            var model = result.ViewData.Model as SeatsModelView;
+
+            //assert
+            Assert.IsNotNull(model.Fligth.Plane);
+        }
+
+        [TestMethod]
+        public void ViewSeat_ModelIsValid_RedirectToConfirm()
+        {
+           //arrange
+            System.Data.Entity.Database.SetInitializer(new AirlineCompany.Models.SampleData());
+            FormController controller = new FormController();
+            SeatsModelView seatModelView = new SeatsModelView();
+            seatModelView.BirthdatePassenger = new DateTime(2000, 4, 12);
+            seatModelView.CNP = 1234445;
+            seatModelView.NamePassenger = "vali";
+
+            FligthSeatInformationView fligthInfo = new FligthSeatInformationView();
+            fligthInfo.FligthId = 2;
+            fligthInfo.PlaceColumn = 12;
+            fligthInfo.PlaceRow = 10;
+
+
+            //act
+            var result = controller.ViewSeat(seatModelView, fligthInfo) as RedirectToRouteResult;
+           
+
+            //assert
+            Assert.IsTrue(result.RouteValues["action"] == "Confirm");
+        }
+
+        [TestMethod]
+        public void ViewSeatPost_FlightIdSent_FligthWithCorectIdReturned()
+        {
+            //arrange
+            System.Data.Entity.Database.SetInitializer(new AirlineCompany.Models.SampleData());
+            FormController controller = new FormController();
+            SeatsModelView seatModelView = new SeatsModelView();
+            seatModelView.BirthdatePassenger = new DateTime(2018, 6, 10);
+            seatModelView.CNP = 1234445;
+            seatModelView.NamePassenger = "Tudor";
+
+            FligthSeatInformationView fligthInfo = new FligthSeatInformationView();
+            fligthInfo.FligthId = 4;
+            fligthInfo.PlaceColumn = 10;
+            fligthInfo.PlaceRow = 10;
+
+            //act
+            var result = controller.ViewSeat(seatModelView, fligthInfo) as ViewResult;
+            var model = result.ViewData.Model as SeatsModelView;
+
+
+            //assert
+            Assert.AreEqual(fligthInfo.FligthId, model.Fligth.FligthId);
+
+        }
+
+        [TestMethod]
+        public void ViewSeatPost_FligthIdSent_PlaneIsNotNull()
+        {
+            //arrange
+            System.Data.Entity.Database.SetInitializer(new AirlineCompany.Models.SampleData());
+            FormController controller = new FormController();
+            SeatsModelView seatModelView = new SeatsModelView();
+            seatModelView.BirthdatePassenger = new DateTime(2018, 6, 10);
+            seatModelView.CNP = 1234445;
+            seatModelView.NamePassenger = "Tudor";
+
+            FligthSeatInformationView fligthInfo = new FligthSeatInformationView();
+            fligthInfo.FligthId = 4;
+            fligthInfo.PlaceColumn = 10;
+            fligthInfo.PlaceRow = 10;
+
+            //act
+            var result = controller.ViewSeat(seatModelView, fligthInfo) as ViewResult;
+            var model = result.ViewData.Model as SeatsModelView;
+
+            //assert
+            Assert.IsNotNull(model.Fligth.Plane);
+
+        }
 
     }
 }
