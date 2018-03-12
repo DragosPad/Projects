@@ -13,6 +13,11 @@ namespace MvcRestaurant.Models
         public DbSet<Reservation> BookingForms { get; set; }
         public DbSet<User> Users { get; set; }
 
+        public RestaurantEntities()
+        {
+            this.Configuration.LazyLoadingEnabled = false;
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

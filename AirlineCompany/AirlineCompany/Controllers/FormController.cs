@@ -42,7 +42,7 @@ namespace AirlineCompany.Controllers
             if (ModelState.IsValid)
             {
                 Reservation reservation = new Reservation();
-                reservation.NamePassenger = seatView.NamePassenger;
+                //reservation.NamePassenger = seatView.NamePassenger;
                 if (seatView.BirthdatePassenger.HasValue)
                 {
                     reservation.BirthdatePassenger = seatView.BirthdatePassenger.Value;
@@ -63,7 +63,7 @@ namespace AirlineCompany.Controllers
             {
                 Fligth fligth = db.Fligths.Include(f => f.Plane).Single(f => f.FligthId == fligthSeatInfoView.FligthId);
                 seatView.Fligth = fligth;
-                return View(seatView);
+               return View(seatView);
             }
         }
 

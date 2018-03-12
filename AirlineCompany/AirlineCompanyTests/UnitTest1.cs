@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using AirlineCompany.Models;
 using AirlineCompany.ViewModels;
 using System.Linq;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace AirlineCompanyTests
 {
@@ -171,27 +173,27 @@ namespace AirlineCompanyTests
         }
 
         [TestMethod]
-        public void ViewSeatPost_FlightIdSent_FligthWithCorectIdReturned()
+        public void ViewSeatPost_ModelStateInvalid_FligthWithCorectIdReturned()
         {
             //arrange
             System.Data.Entity.Database.SetInitializer(new AirlineCompany.Models.SampleData());
             FormController controller = new FormController();
             SeatsModelView seatModelView = new SeatsModelView();
             seatModelView.BirthdatePassenger = new DateTime(2018, 6, 10);
-            seatModelView.CNP = 1234445;
+            //seatModelView.CNP
             seatModelView.NamePassenger = "Tudor";
 
             FligthSeatInformationView fligthInfo = new FligthSeatInformationView();
             fligthInfo.FligthId = 4;
             fligthInfo.PlaceColumn = 10;
             fligthInfo.PlaceRow = 10;
+            controller.ModelState.AddModelError("SeatsModelView.CNP", "test");
 
             //act
             var result = controller.ViewSeat(seatModelView, fligthInfo) as ViewResult;
             var model = result.ViewData.Model as SeatsModelView;
 
-
-            //assert
+           //assert
             Assert.AreEqual(fligthInfo.FligthId, model.Fligth.FligthId);
 
         }
@@ -211,14 +213,44 @@ namespace AirlineCompanyTests
             fligthInfo.FligthId = 4;
             fligthInfo.PlaceColumn = 10;
             fligthInfo.PlaceRow = 10;
+            controller.ModelState.AddModelError("SeatsModelView.CNP", "test");
 
             //act
             var result = controller.ViewSeat(seatModelView, fligthInfo) as ViewResult;
             var model = result.ViewData.Model as SeatsModelView;
 
-            //assert
+            //assert 
             Assert.IsNotNull(model.Fligth.Plane);
 
+        }
+
+        [TestMethod]
+        public void ViewSeatPost_ModelStateIsValid_ReservationSavedInDatabase()
+        {
+            //arrange
+            System.Data.Entity.Database.SetInitializer(new AirlineCompany.Models.SampleData());
+            FormController controller = new FormController();
+            SeatsModelView seatModelView = new SeatsModelView();
+            seatModelView.BirthdatePassenger = new DateTime(2018, 6, 10);
+            seatModelView.CNP = 1234445;
+            seatModelView.NamePassenger = "Tudor";
+
+            FligthSeatInformationView fligthInfo = new FligthSeatInformationView();
+            fligthInfo.FligthId = 4;
+            fligthInfo.PlaceColumn = 10;
+            fligthInfo.PlaceRow = 10;
+
+            
+
+            //act
+            var result = controller.ViewSeat(seatModelView, fligthInfo) as ViewResult;
+
+            //assert 
+            AirlineEntities db = new AirlineEntities();
+            Reservation reser = db.Reservations.SingleOrDefault();
+            Assert.IsNotNull(reser);
+           
+            
         }
 
     }

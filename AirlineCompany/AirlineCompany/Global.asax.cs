@@ -33,7 +33,7 @@ namespace AirlineCompany
 
         protected void Application_Start()
         {
-            System.Data.Entity.Database.SetInitializer(new AirlineCompany.Models.SampleData());
+           // System.Data.Entity.Database.SetInitializer(new AirlineCompany.Models.SampleData());
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
