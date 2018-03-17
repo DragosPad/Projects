@@ -10,7 +10,7 @@ using MvcRestaurant.ViewModel;
 
 namespace MvcRestaurant.Controllers
 {
-    public class ReservationController : Controller
+    public class ReservationController : Controller 
     {
         private RestaurantEntities db = new RestaurantEntities();
 
